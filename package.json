@@ -1,0 +1,14 @@
+{
+	"name": "js-testing",
+	"private": true,
+	"version": "1.0.0",
+	"description": "Slides for JS testing workshop",
+	"dependencies": {
+		"serve": "^6.5.5"
+	},
+	"scripts": {
+		"start": "serve"
+	},
+	"author": "merkerto & taegeluk",
+	"license": "UNLICENSED"
+}
