@@ -27,7 +27,7 @@ svg.current-fragment .selfdraw {
 }
 
 g.current-fragment .group-selfdraw {
-    animation: selfdraw 0.6s ease-out both;
+    animation: selfdraw 1s ease-out both;
 }
 
 svg.current-fragment .appear {
@@ -41,7 +41,7 @@ svg.current-fragment .appear {
 
 .history-line {
     stroke: darkblue;
-    fill: darkblue;
+    fill: transparent;
     stroke-width: 4px;
     stroke-linecap: round;
     stroke-linejoin: round;

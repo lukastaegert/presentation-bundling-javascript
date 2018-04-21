@@ -20,19 +20,15 @@ Fewer requests = Faster load times
 
 <!-- als Timeline links mit Box rechts -->
 
-<!-- Browserify: CJS -->
+<!-- Browserify: CJS, emulate Node runtime -->
 <!-- Webpack: CJS, ES6 -->
-<!-- Rollup: ES6 (other formats with plugins) -->
+<!-- Rollup: ES6 (other formats with plugins) 0RT -->
 
 <svg class="full-size-svg fragment">
-  <path d="M15,50 V490"
+  <path d="M15,50 V140 h15 h-15 V280 h15 h-15 V420 h15 h-15 V500 l5,-20 l-5,10 l-5,-10 l5,20"
         pathLength="100" class="history-line selfdraw" />
-  <path d="M15,500 l10,-20 l-10,10 l-10,-10 l10,20 c"
-        pathLength="100" class="history-line history-arrow appear" style="animation-delay:0.4s;" />
 
   <g class="fragment none">
-    <path d="M15,140 H30"
-          pathLength="100" class="history-line selfdraw" />
     <text x="45" y="152"
           class="appear" style="animation-delay:0.2s;">
       Browserify
@@ -42,8 +38,6 @@ Fewer requests = Faster load times
    </g>
 
   <g class="fragment none">
-    <path d="M15,280 h20"
-          pathLength="100" class="history-line selfdraw" style="animation-delay:0.2s;" />
     <text x="45" y="292"
           class="appear" style="animation-delay:0.4s;">
       Webpack
@@ -53,8 +47,6 @@ Fewer requests = Faster load times
   </g>
 
   <g class="fragment none">
-    <path d="M15,420 h20"
-          pathLength="100" class="history-line selfdraw" style="animation-delay:0.4s;" />
     <text x="45" y="432"
           class="appear" style="animation-delay:0.6s;">
       Rollup
@@ -93,6 +85,6 @@ Contrast CJS, ESM
 ---
 
 # III
-## How bundles are rolled up
+## Tree-shaking
 
 --
