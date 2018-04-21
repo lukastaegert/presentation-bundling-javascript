@@ -25,28 +25,43 @@ Fewer requests = Faster load times
 <!-- Rollup: ES6 (other formats with plugins) -->
 
 <svg class="full-size-svg fragment">
-  <path d="M10,0 V490"
+  <path d="M15,50 V490"
         pathLength="100" class="history-line selfdraw" />
-  <path d="M10,500 l10,-20 l-10,10 l-10,-10 l10,20 c"
-        pathLength="100" class="history-line appear" style="animation-delay:0.4s;" />
-  <path d="M10,100 H30"
-        pathLength="100" class="history-line selfdraw" />
-  <text x="45" y="112"
-        class="appear" style="animation-delay:0.2s;">
-    Hello
-  </text>
-  <path d="M10,250 h20"
-        pathLength="100" class="history-line selfdraw" style="animation-delay:0.2s;" />
-  <text x="45" y="262"
-        class="appear" style="animation-delay:0.4s;">
-    Hello
-  </text>
-  <path d="M10,400 h20"
-        pathLength="100" class="history-line selfdraw" style="animation-delay:0.4s;" />
-  <text x="45" y="412"
-        class="appear" style="animation-delay:0.6s;">
-    Hello
-  </text>
+  <path d="M15,500 l10,-20 l-10,10 l-10,-10 l10,20 c"
+        pathLength="100" class="history-line history-arrow appear" style="animation-delay:0.4s;" />
+
+  <g class="fragment none">
+    <path d="M15,140 H30"
+          pathLength="100" class="history-line selfdraw" />
+    <text x="45" y="152"
+          class="appear" style="animation-delay:0.2s;">
+      Browserify
+    </text>
+    <path d="M45,165 H300 V500 H750 V50 H300 V165"
+          pathLength="100" class="history-line history-box group-selfdraw" />
+   </g>
+
+  <g class="fragment none">
+    <path d="M15,280 h20"
+          pathLength="100" class="history-line selfdraw" style="animation-delay:0.2s;" />
+    <text x="45" y="292"
+          class="appear" style="animation-delay:0.4s;">
+      Webpack
+    </text>
+    <path d="M45,305 H300 V500 H750 V50 H300 V305"
+          pathLength="100" class="history-line history-box group-selfdraw" />
+  </g>
+
+  <g class="fragment none">
+    <path d="M15,420 h20"
+          pathLength="100" class="history-line selfdraw" style="animation-delay:0.4s;" />
+    <text x="45" y="432"
+          class="appear" style="animation-delay:0.6s;">
+      Rollup
+    </text>
+    <path d="M45,445 H300 V500 H750 V50 H300 V445"
+          pathLength="100" class="history-line history-box group-selfdraw" />
+  </g>
 </svg>
 
 --
@@ -78,6 +93,6 @@ Contrast CJS, ESM
 ---
 
 # III
-## Rollup's build process
+## How bundles are rolled up
 
 --

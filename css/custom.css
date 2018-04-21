@@ -1,8 +1,5 @@
 @charset "UTF-8";
-body .reveal .slides section .fragment.visible {
-  opacity: 0.3;
-}
-body .reveal .slides section .fragment.visible.no-burn,
+body .reveal .slides section .fragment.visible,
 body .reveal .slides section .fragment.visible.current-fragment,
 body .reveal .slides section .fragment.highlight {
   opacity: 1;

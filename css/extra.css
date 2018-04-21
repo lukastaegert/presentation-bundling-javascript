@@ -16,24 +16,44 @@
     }
 }
 
-.current-fragment .selfdraw {
+svg.current-fragment .selfdraw {
     stroke-dasharray: 100px;
     animation: selfdraw 0.6s ease-out both;
 }
 
-.current-fragment .appear {
+.group-selfdraw {
+    stroke-dasharray: 100px;
+    stroke-dashoffset: 100px;
+}
+
+g.current-fragment .group-selfdraw {
+    animation: selfdraw 0.6s ease-out both;
+}
+
+svg.current-fragment .appear {
     animation: appear 1s ease both;
 }
 
+.reveal .slides section .fragment.none {
+    opacity: 1;
+    visibility: visible;
+}
+
 .history-line {
-    stroke: green;
-    fill: green;
+    stroke: darkblue;
+    fill: darkblue;
     stroke-width: 4px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.history-line.history-box {
+    fill: none;
 }
 
 .full-size-svg {
     display: block;
-    width: 900px;
-    height: 500px;
+    width: 800px;
+    height: 505px;
     margin: 20px auto;
 }
