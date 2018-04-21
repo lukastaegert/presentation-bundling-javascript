@@ -1,3 +1,10 @@
+/* fragment without effect */
+.reveal .slides section .fragment.none {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* selfdraw */
 @keyframes selfdraw {
     from {
         stroke-dashoffset: 100px;
@@ -7,6 +14,23 @@
     }
 }
 
+section.future .section-selfdraw {
+    animation: none;
+}
+
+.group-selfdraw {
+    stroke-dasharray: 100px;
+    stroke-dashoffset: 100px;
+}
+
+.section-selfdraw,
+svg.current-fragment .svg-selfdraw,
+g.current-fragment .group-selfdraw {
+    stroke-dasharray: 100px;
+    animation: selfdraw 1s ease-out both;
+}
+
+/* appear */
 @keyframes appear {
     from {
         opacity: 0;
@@ -16,27 +40,19 @@
     }
 }
 
-svg.current-fragment .selfdraw {
-    stroke-dasharray: 100px;
-    animation: selfdraw 0.6s ease-out both;
+section.future .section-appear {
+    animation: none;
 }
 
-.group-selfdraw {
-    stroke-dasharray: 100px;
-    stroke-dashoffset: 100px;
+.group-appear {
+    opacity: 0;
+    animation: none;
 }
 
-g.current-fragment .group-selfdraw {
-    animation: selfdraw 1s ease-out both;
-}
-
-svg.current-fragment .appear {
+.section-appear,
+svg.current-fragment .svg-appear,
+g.current-fragment .group-appear {
     animation: appear 1s ease both;
-}
-
-.reveal .slides section .fragment.none {
-    opacity: 1;
-    visibility: visible;
 }
 
 .history-line {
@@ -56,4 +72,21 @@ svg.current-fragment .appear {
     width: 800px;
     height: 505px;
     margin: 20px auto;
+}
+
+.right-arrow-svg {
+    vertical-align: middle;
+    display: inline-block;
+    width: 80px;
+    height: 40px;
+    margin: 0 10px;
+}
+
+svg.right-arrow-svg .selfdraw {
+    stroke-dasharray: 100px;
+    animation: selfdraw 0.6s ease-out both;
+}
+
+section.future svg.right-arrow-svg .selfdraw {
+    animation: none;
 }
