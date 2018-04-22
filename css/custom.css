@@ -10,17 +10,8 @@ body .reveal .slides section .fragment.highlight.current-fragment {
   border-radius: 4px;
 }
 
-html:not(.zschaler):not(.boidol):not(.arens) .reveal .progress span {
+.reveal .progress span {
   background-color: #690013;
-}
-.zschaler .reveal .progress span {
-  background-color: #ff00ff;
-}
-.boidol .reveal .progress span {
-  background-color: #00aaff;
-}
-.arens .reveal .progress span {
-  background-color: #ffaa00;
 }
 
 .reveal p.copyright {

@@ -174,12 +174,12 @@ Execution order
   <tr>
     <td>
     `x.js`
-    <pre><code class="lang-javascript hljs" style="width:340px;">const x = 1;
+    <pre><code class="lang-javascript hljs">const x = 1;
 const y = require('./y.js');
 console.log(x, y);</code></pre></td>
     <td>
     `x.js`
-    <pre><code class="lang-javascript hljs" style="width:340px;">const x = 1;
+    <pre><code class="lang-javascript hljs">const x = 1;
 import {y} from './y.js';
 console.log(x, y);</code></pre></td>
   </tr>
@@ -214,20 +214,20 @@ Live bindings
   <tr>
     <td>
     `y.js`
-    <pre><code class="lang-javascript hljs" style="width:340px;">module.exports = 1;
+    <pre><code class="lang-javascript hljs">module.exports = 1;
 setTimeout(() =>
   module.exports = 2);</code></pre>
     `x.js`
-    <pre><code class="lang-javascript hljs" style="width:340px;">const y = require('./y.js');
+    <pre><code class="lang-javascript hljs">const y = require('./y.js');
 setTimeout(() =>
   console.log(y));</code></pre>
     </td>
     <td>
     `y.js`
-    <pre><code class="lang-javascript hljs" style="width:340px;">export let y = 1;
+    <pre><code class="lang-javascript hljs">export let y = 1;
 setTimeout(() => y = 2);</code></pre>
     `x.js`
-    <pre><code class="lang-javascript hljs" style="width:340px;">import {y} from './y.js';
+    <pre><code class="lang-javascript hljs">import {y} from './y.js';
 setTimeout(() =>
   console.log(y));</code></pre>
     </td>
@@ -247,7 +247,31 @@ setTimeout(() =>
 
 ## Scope hoisting
 
-
+<div class="left-align-box">
+  `y.js`
+  <pre><code id="scope-hoisting-in-1" contenteditable class="lang-javascript hljs">export let y = 1;
+setTimeout(() => y = 2);</code></pre>
+  `x.js`
+  <pre><code id="scope-hoisting-in-2" contenteditable class="lang-javascript hljs">import {y} from './y.js';
+setTimeout(() =>
+  console.log(y));</code></pre>
+  <button class="rollup-button" onclick="rollupToBlock({
+      './y.js': 'scope-hoisting-in-1',
+      './x.js': 'scope-hoisting-in-2'
+    },
+    './x.js',
+    'scope-hoisting-out')">
+    <svg style="width:135px;height:60px">
+      <image x="0" y="0" height="60px" href="img/rollup.svg" class="rollup-button-image" />
+      <path d="M60,25 h50 l-10,-10 l30,15 l-30,15 l10,-10 h-50"
+            pathLength="100" class="history-line rollup-button-line"/>
+    </svg>
+  </button>
+</div>
+<div class="left-align-box" style="margin-left: 40px; min-width:300px;">
+  `bundle.js`
+  <pre id="scope-hoisting-out-pre"><code id="scope-hoisting-out" class="lang-javascript hljs"></code></pre>
+</div>
 
 ---
 
