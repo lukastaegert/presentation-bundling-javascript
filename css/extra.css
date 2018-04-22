@@ -55,6 +55,10 @@ g.current-fragment .group-appear {
     animation: appear 1s ease both;
 }
 
+g.visible .group-highlight {
+    fill: red;
+}
+
 .history-line {
     stroke: darkblue;
     fill: transparent;
@@ -89,4 +93,8 @@ svg.right-arrow-svg .selfdraw {
 
 section.future svg.right-arrow-svg .selfdraw {
     animation: none;
+}
+
+.highlight {
+    color: red;
 }
