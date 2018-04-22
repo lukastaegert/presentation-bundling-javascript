@@ -101,12 +101,6 @@ Fewer requests <svg class="right-arrow-svg">
 
 ## Tooling
 
-<!-- als Timeline links mit Box rechts -->
-
-<!-- Browserify: CJS, emulate Node runtime -->
-<!-- Webpack: CJS, ES6 -->
-<!-- Rollup: ES6 (other formats with plugins) 0RT -->
-
 <svg class="full-size-svg fragment">
   <path d="M15,50 V120 h15 h-15 V260 h15 h-15 V400 h15 h-15 V500 l5,-20 l-5,10 l-5,-10 l5,20"
         pathLength="100" class="history-line svg-selfdraw" />
@@ -168,11 +162,92 @@ Fewer requests <svg class="right-arrow-svg">
 
 --
 
-Medium article
+## Why no runtime loader?
+
+<div class="fragment" style="text-align:left;display:inline-block">
+Execution order
+<table>
+  <tr>
+    <th><span class="highlight">CJS</span>: dynamic</th>
+    <th><span class="highlight">ESM</span>: statically known</th>
+  </tr>
+  <tr>
+    <td>
+    `x.js`
+    <pre><code class="lang-javascript hljs" style="width:340px;">const x = 1;
+const y = require('./y.js');
+console.log(x, y);</code></pre></td>
+    <td>
+    `x.js`
+    <pre><code class="lang-javascript hljs" style="width:340px;">const x = 1;
+import {y} from './y.js';
+console.log(x, y);</code></pre></td>
+  </tr>
+  <tr class="fragment">
+    <td><ol>
+      <li>`const x = 1`</li>
+      <li class="fragment highlight-red">`<Execute y.js>`</li>
+      <li>`const y = ...`</li>
+      <li>`console.log(x,y)`</li>
+    </ol></td>
+    <td class="fragment"><ol>
+      <li class="fragment highlight-red">`<Execute y.js>`</li>
+      <li>`<Import y>`</li>
+      <li>`const x = 1`</li>
+      <li>`console.log(x,y)`</li>
+    </ol></td>
+  </tr>
+</table>
+</div>
 
 --
 
-Contrast CJS, ESM
+## Why no runtime loader?
+
+<div style="text-align:left;display:inline-block">
+Live bindings
+<table class="fragment">
+  <tr>
+    <th><span class="highlight">CJS</span></th>
+    <th><span class="highlight">ESM</span></th>
+  </tr>
+  <tr>
+    <td>
+    `y.js`
+    <pre><code class="lang-javascript hljs" style="width:340px;">module.exports = 1;
+setTimeout(() =>
+  module.exports = 2);</code></pre>
+    `x.js`
+    <pre><code class="lang-javascript hljs" style="width:340px;">const y = require('./y.js');
+setTimeout(() =>
+  console.log(y));</code></pre>
+    </td>
+    <td>
+    `y.js`
+    <pre><code class="lang-javascript hljs" style="width:340px;">export let y = 1;
+setTimeout(() => y = 2);</code></pre>
+    `x.js`
+    <pre><code class="lang-javascript hljs" style="width:340px;">import {y} from './y.js';
+setTimeout(() =>
+  console.log(y));</code></pre>
+    </td>
+  </tr>
+  <tr class="fragment">
+    <td>
+      Output: `"1"`
+    </td>
+    <td class="fragment">
+      Output: `"2"`
+    </td>
+  </tr>
+</table>
+</div>
+
+--
+
+## Scope hoisting
+
+
 
 ---
 
