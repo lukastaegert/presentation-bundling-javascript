@@ -273,12 +273,74 @@ setTimeout(() =>
   <pre id="scope-hoisting-out-pre"><code id="scope-hoisting-out" class="lang-javascript hljs"></code></pre>
 </div>
 
+--
+
+No export objects,<br>
+shared variables across modules
+<svg class="down-arrow-svg">
+  <path d="M15,5 v40 l-10,-2 l20,15 l20,-15 l-10,2 v-40"
+        pathLength="100" class="history-line selfdraw" style="animation-delay:0.6s;"/>
+</svg>
+Better dead code elimination?
+
+
 ---
 
 # III
 ## Tree-shaking
 
+--
+
+[medium.com/@Rich_Harris/tree-shaking-versus-dead-code-elimination-d3765df85c80](https://medium.com/@Rich_Harris/tree-shaking-versus-dead-code-elimination-d3765df85c80)
+
+<img src="img/tree-shaking-article.png" style="width:550px">
+
+[en.wikipedia.org/wiki/Tree_shaking](https://en.wikipedia.org/wiki/Tree_shaking)
+
+--
+
+## Traditional DCE
+
+<pre style="display:inline-block;"><code class="lang-javascript hljs" data-noescape><span class="fragment turn-red" data-fragment-index="1">import {getValue} from './getValue.js';</span><span class="fragment show-red-once" data-fragment-index="1">No included usages</span>
+
+<span class="fragment turn-red" data-fragment-index="0">function unUsed() {}</span><span class="fragment show-red-once" data-fragment-index="0">No usages</span>
+
+function ciruclar1(){ circular2() }
+function circular2(){ ciruclar1() }
+
+export let x;
+
+if (true) {
+  x = 'default';
+}<span class="fragment turn-red" data-fragment-index="0"> else {
+  x = getValue();
+}</span><span class="fragment show-red-once" data-fragment-index="0">Dead branch</span></code></pre>
+
+--
+
+## Tree-Shaking
+("Mark-and-Sweep DCE")
+
+<pre style="display:inline-block;"><code class="lang-javascript hljs" data-noescape>import {getValue} from './getValue.js';
+
+function unUsed() {}
+
+function ciruclar1(){ circular2() }
+function circular2(){ ciruclar1() }
+
+<span class="fragment turn-green" data-fragment-index="0">export let x;</span><span class="fragment show-green-once" data-fragment-index="0">Part of API</span>
+
+if (true) <span class="fragment turn-green" data-fragment-index="1">{
+  x = 'default';
+}</span> else {<span class="fragment show-green-once" data-fragment-index="1">Modifies included variable</span>
+  x = getValue();
+}</code></pre>
+
 ---
 
 # IV
-##
+## Rolling it up –<br>The Power of Clean Code
+
+--
+
+## The Rollup Process
