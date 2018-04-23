@@ -28,14 +28,16 @@ section.future .section-selfdraw {
     animation: none;
 }
 
-.group-selfdraw {
+.group-selfdraw,
+.selfdraw-container .selfdraw {
     stroke-dasharray: 100px;
     stroke-dashoffset: 100px;
 }
 
 .section-selfdraw,
 svg.current-fragment .svg-selfdraw,
-g.current-fragment .group-selfdraw {
+g.current-fragment .group-selfdraw,
+.selfdraw-container.visible .selfdraw {
     stroke-dasharray: 100px;
     animation: selfdraw 1s ease-out both;
 }
@@ -99,18 +101,18 @@ g.visible .group-highlight {
 .down-arrow-svg {
     display: block;
     width: 80px;
-    height: 60px;
-    margin: 20px auto;
+    height: 50px;
+    margin: 0 auto;
 }
 
-svg.right-arrow-svg .selfdraw,
-svg.down-arrow-svg .selfdraw {
+svg.right-arrow-svg .svg-selfdraw,
+svg.down-arrow-svg .svg-selfdraw {
     stroke-dasharray: 100px;
     animation: selfdraw 0.6s ease-out both;
 }
 
-section.future svg.right-arrow-svg .selfdraw,
-section.future svg.down-arrow-svg .selfdraw {
+section.future svg.right-arrow-svg .svg-selfdraw,
+section.future svg.down-arrow-svg .svg-selfdraw {
     animation: none;
 }
 

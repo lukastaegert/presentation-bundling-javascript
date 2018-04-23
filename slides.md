@@ -82,7 +82,7 @@ TNG Technology Consulting, 2018-05-04
 
 Fewer requests <svg class="right-arrow-svg">
   <path d="M5,15 h50 l-10,-10 l30,15 l-30,15 l10,-10 h-50"
-        pathLength="100" class="history-line selfdraw" style="animation-delay:0.6s;"/>
+        pathLength="100" class="history-line svg-selfdraw" style="animation-delay:0.6s;"/>
 </svg> Faster loading
 <svg style="display:block; width:800px; height:400px; margin:20px auto">
   <text x="300" y="80" text-anchor="end" class="section-appear" style="animation-delay:0.8s;">jquery.js</text>
@@ -277,10 +277,12 @@ setTimeout(() =>
 
 No export objects,<br>
 shared variables across modules
+
 <svg class="down-arrow-svg">
-  <path d="M15,5 v40 l-10,-2 l20,15 l20,-15 l-10,2 v-40"
-        pathLength="100" class="history-line selfdraw" style="animation-delay:0.6s;"/>
+  <path d="M15,5 v30 l-10,-2 l20,15 l20,-15 l-10,2 v-30"
+        pathLength="100" class="history-line svg-selfdraw" style="animation-delay:0.6s;"/>
 </svg>
+
 Better dead code elimination?
 
 
@@ -344,3 +346,36 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
 --
 
 ## The Rollup Process
+
+<div style="margin-top:40px">
+  <div class="selfdraw-container fragment">
+    Parse code as AST nodes,<br>
+    create scope hierarchy with declared variables,<br>
+    bind identifiers to declarations (per module)
+  </div>
+  
+  <div class="selfdraw-container fragment">
+    <svg class="down-arrow-svg" style="margin:0 auto">
+      <path d="M15,5 v30 l-10,-2 l20,15 l20,-15 l-10,2 v-30"
+            pathLength="100" class="history-line selfdraw"/>
+    </svg>
+    Link imports and exports across modules
+  </div>
+  
+  <div class="selfdraw-container fragment">
+    <svg class="down-arrow-svg" style="margin:0 auto">
+      <path d="M15,5 v30 l-10,-2 l20,15 l20,-15 l-10,2 v-30"
+            pathLength="100" class="history-line selfdraw"/>
+    </svg>
+    Mark external exports,<br>
+    mark statements to be included (multi-pass)
+  </div>
+  
+  <div class="selfdraw-container fragment">
+    <svg class="down-arrow-svg" style="margin:0 auto">
+      <path d="M15,5 v30 l-10,-2 l20,15 l20,-15 l-10,2 v-30"
+            pathLength="100" class="history-line selfdraw"/>
+    </svg>
+    Render concatenated transformed modules
+  </div>
+</div>
