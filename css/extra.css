@@ -177,7 +177,8 @@ html .rollup-button .rollup-button-image {
 }
 
 .fragment.show-red-once,
-.fragment.show-green-once {
+.fragment.show-green-once,
+.fragment.show-blue-once {
     opacity: 0 !important;
     color: white;
     border-radius: 3px;
@@ -186,12 +187,17 @@ html .rollup-button .rollup-button-image {
 }
 
 .fragment.show-red-once span.hljs-keyword,
-.fragment.show-green-once span.hljs-keyword {
+.fragment.show-green-once span.hljs-keyword,
+.fragment.show-blue-once span.hljs-keyword,
+.fragment.show-red-once span.hljs-literal,
+.fragment.show-green-once span.hljs-literal,
+.fragment.show-blue-once span.hljs-literal {
     color: white;
 }
 
 .fragment.show-red-once.current-fragment,
-.fragment.show-green-once.current-fragment {
+.fragment.show-green-once.current-fragment,
+.fragment.show-blue-once.current-fragment {
     opacity: 1 !important;
 }
 
@@ -205,4 +211,8 @@ html .rollup-button .rollup-button-image {
 
 .fragment.show-green-once {
     background-color: green;
+}
+
+.fragment.show-blue-once {
+    background-color: blue;
 }

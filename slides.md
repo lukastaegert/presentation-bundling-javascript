@@ -349,9 +349,10 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
 
 <div style="margin-top:40px">
   <div class="selfdraw-container fragment">
-    Parse code as AST nodes,<br>
+    <span class="highlight">Parse</span> code as AST,<br>
     create scope hierarchy with declared variables,<br>
-    bind identifiers to declarations (per module)
+    bind identifiers to declarations;<br>
+    repeat with discovered dependencies
   </div>
   
   <div class="selfdraw-container fragment">
@@ -359,7 +360,7 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
       <path d="M15,5 v30 l-10,-2 l20,15 l20,-15 l-10,2 v-30"
             pathLength="100" class="history-line selfdraw"/>
     </svg>
-    Link imports and exports across modules
+    <span class="highlight">Link</span> imports and exports across modules
   </div>
   
   <div class="selfdraw-container fragment">
@@ -367,7 +368,7 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
       <path d="M15,5 v30 l-10,-2 l20,15 l20,-15 l-10,2 v-30"
             pathLength="100" class="history-line selfdraw"/>
     </svg>
-    Mark external exports,<br>
+    <span class="highlight">Mark</span> external exports,<br>
     mark statements to be included (multi-pass)
   </div>
   
@@ -376,6 +377,68 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
       <path d="M15,5 v30 l-10,-2 l20,15 l20,-15 l-10,2 v-30"
             pathLength="100" class="history-line selfdraw"/>
     </svg>
-    Render concatenated transformed modules
+    <span class="highlight">Render</span> concatenated transformed modules
   </div>
 </div>
+
+--
+
+## Marking included statements
+(ca. summer 2017)
+
+<ul>
+<li class="fragment">Custom AST extensions</li>
+<li class="fragment">
+  <span class="highlight">`ASTNode.hasEffects()`</span>
+  <ul class="fragment">
+    <li>Only checked for certain top-level statements</li>
+  </ul>
+</li>
+<li class="fragment"><span class="highlight">`CallExpression.hasEffects()`</span>: Several
+  <br>hundred buggy lines of custom logic duplicating
+  <br>other code</li>
+</ul>
+
+--
+
+## Hello Open-Closed-Principle
+
+<div style="text-align:left;display:inline-block">
+  <div class="fragment">
+    <p>
+    New effect types for expressions:
+    </p>
+    <ul>
+      <li><span class="highlight">`.hasEffectsWhenCalled(callOptions)`</span></li>
+      <li><span class="highlight">`.hasEffectsWhenAccessed()`</span></li>
+    </ul>
+  </div>
+  <div class="fragment">
+    <p>
+    New effect type for expressions and patterns:
+    </p>
+    <ul>
+      <li><span class="highlight">`.hasEffectsWhenAssigned()`</span></li>
+    </ul>
+  </div>
+</div>
+
+--
+
+## Checking for side-effects
+
+<pre style="display:inline-block;"><code class="lang-javascript hljs" data-noescape><span class="fragment turn-green" data-fragment-index="0">export let x;</span><span class="fragment show-green-once" data-fragment-index="0" style="position:absolute">Part of API</span><span class="fragment show-blue-once" data-fragment-index="6" style="position:absolute">hasEffectsWhenAssigned?</span><span class="fragment show-green-once" data-fragment-index="7">hasEffectsWhenAssigned: true</span>
+let y;<span class="fragment show-red-once" data-fragment-index="1">hasEffects: false</span>
+
+function doubleY() {<span class="fragment show-red-once" data-fragment-index="2">hasEffects: false</span>
+  y = 2 * y;
+}
+
+<span class="fragment turn-green" data-fragment-index="7">function assignValues() {</span><span class="fragment show-red-once" data-fragment-index="3" style="position:absolute">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="4" style="position:absolute">hasEffectsWhenCalled?</span><span class="fragment show-green-once" data-fragment-index="7">hasEffectsWhenCalled: true</span>
+  x = 1;<span class="fragment show-blue-once" data-fragment-index="6" style="position:absolute">hasEffects?</span><span class="fragment show-green-once" data-fragment-index="7">hasEffects: true</span>
+  y = 1;
+  doubleY();
+<span class="fragment turn-green" data-fragment-index="7">}</span>
+
+<span class="fragment turn-green" data-fragment-index="7">assignValues();</span><span class="fragment show-blue-once" data-fragment-index="4" style="position:absolute">hasEffects?</span><span class="fragment show-green-once" data-fragment-index="7">hasEffects: true</span>
+</code></pre>
