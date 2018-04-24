@@ -29,7 +29,7 @@ TNG Technology Consulting, 2018-05-04
     <path d="M45,183 H300 V500 H750 V50 H300 V183"
           pathLength="100" class="history-line history-box group-selfdraw" />
     <foreignObject x="310" y="60" width="430" height="430" class="group-appear">
-      <div class="group-appear" style="margin-top:100px;">
+      <div style="margin-top:100px;">
       <span class="highlight">C</span>ommon <span class="highlight">JS</span>
       <br><br>
       Module format used by
@@ -58,7 +58,7 @@ TNG Technology Consulting, 2018-05-04
     <path d="M45,393 H300 V500 H750 V50 H300 V393"
           pathLength="100" class="history-line history-box group-selfdraw" />
     <foreignObject x="310" y="60" width="430" height="430" class="group-appear">
-      <div class="group-appear" style="margin-top:70px;">
+      <div style="margin-top:70px;">
       <span class="highlight">E</span>CMA<span class="highlight">S</span>cript
       <span class="highlight">M</span>odules
       <br><br>
@@ -81,7 +81,7 @@ TNG Technology Consulting, 2018-05-04
 ## Modules are bad for performance
 
 Fewer requests <svg class="right-arrow-svg">
-  <path d="M5,15 h50 l-10,-10 l30,15 l-30,15 l10,-10 h-50"
+  <path d="M5,15 h30 l-2,-10 l15,20 l-15,20 l2,-10 h-30"
         pathLength="100" class="history-line svg-selfdraw" style="animation-delay:0.6s;"/>
 </svg> Faster loading
 <svg style="display:block; width:800px; height:400px; margin:20px auto">
@@ -91,7 +91,7 @@ Fewer requests <svg class="right-arrow-svg">
   <text x="300" y="260" text-anchor="end" class="section-appear" style="animation-delay:1.4s;">app.js</text>
   <text x="300" y="320" text-anchor="end" class="section-appear" style="animation-delay:1.6s;">…</text>
   <g class="fragment none">
-    <path d="M360,40 h20 V185 h50 l-10,-10 l30,15 l-30,15 l10,-10 h-50 V340 h-20"
+    <path d="M360,40 h20 V185 h30 l-2,-10 l15,20 l-15,20 l2,-10 h-30 V340 h-20"
           pathLength="100" class="history-line group-selfdraw" />
     <text x="480" y="200" class="group-appear" style="animation-delay:0.6s;">bundle.js</text>
   </g>
@@ -112,7 +112,7 @@ Fewer requests <svg class="right-arrow-svg">
     <path d="M45,145 H300 V500 H750 V50 H300 V145"
           pathLength="100" class="history-line history-box group-selfdraw" />
     <foreignObject x="310" y="60" width="430" height="430" class="group-appear">
-      <div class="group-appear" style="margin-top:20px;">
+      <div style="margin-top:20px;">
       <img src="img/browserify.svg" style="display:block;height:180px;margin:30px auto">
       Bundles <span class="highlight">CJS</span> modules
       <br><br>
@@ -128,7 +128,7 @@ Fewer requests <svg class="right-arrow-svg">
     <path d="M45,285 H300 V500 H750 V50 H300 V285"
           pathLength="100" class="history-line history-box group-selfdraw" />
     <foreignObject x="310" y="60" width="430" height="430" class="group-appear">
-      <div class="group-appear" style="margin-top:20px;">
+      <div style="margin-top:20px;">
       <img src="img/webpack.svg" style="display:block;height:180px;margin:30px auto">
       Bundles <span class="highlight">CJS</span>, <span class="highlight">AMD</span>,
       <span class="highlight">ESM</span>
@@ -145,7 +145,7 @@ Fewer requests <svg class="right-arrow-svg">
     <path d="M45,425 H300 V500 H750 V50 H300 V425"
           pathLength="100" class="history-line history-box group-selfdraw" />
     <foreignObject x="310" y="60" width="430" height="430" class="group-appear">
-      <div class="group-appear" style="margin-top:20px;">
+      <div style="margin-top:20px;">
       <img src="img/rollup.svg" style="display:block;height:180px;margin:30px auto">
       Bundles <span class="highlight">ESM</span> modules
       <br><br>
@@ -405,7 +405,7 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
 
 --
 
-## Some more<br>Open-Closed-Principle
+## Some<br>Open-Closed-Principle
 
 <div style="text-align:left;display:inline-block">
   <div class="fragment">
@@ -478,14 +478,16 @@ function doubleY() {<span class="fragment show-red-once" data-fragment-index="2"
 <div class="left-align-box">
   `main.js`
   <pre><code id="value-tracking-in" contenteditable class="lang-javascript hljs">const x1 = [1, 2, 3];
-const x2 = x1.map(v => 2*v)
-             .join();
+const x2 = x1
+  .map(v => 2*v)
+  .join();
 
 const y1 = {
   getValue: () => 2
 };
-const y2 = y1.getValue()
-             .toFixed();
+const y2 = y1
+  .getValue()
+  .toFixed();
 </code></pre>
 </div>
 <div class="left-align-box" style="margin-left: 40px; min-width:300px;">

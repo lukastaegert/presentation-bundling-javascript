@@ -1,14 +1,14 @@
 {
-	"name": "js-testing",
+	"name": "btd-rollup-talk",
 	"private": true,
 	"version": "1.0.0",
-	"description": "Slides for JS testing workshop",
+	"description": "Slides for the BTD rollup talk",
 	"dependencies": {
-		"serve": "^6.5.5"
+		"serve": "^6.5.6"
 	},
 	"scripts": {
 		"start": "serve"
 	},
-	"author": "merkerto & taegeluk",
+	"author": "taegeluk",
 	"license": "UNLICENSED"
 }
