@@ -255,22 +255,22 @@ setTimeout(() => y = 2);</code></pre>
   <pre><code id="scope-hoisting-in-2" contenteditable class="lang-javascript hljs">import {y} from './y.js';
 setTimeout(() =>
   console.log(y));</code></pre>
+</div>
+<div class="left-align-box" style="margin-left: 40px; min-width:300px;">
   <button class="rollup-button" onclick="rollupToBlock({
       './y.js': 'scope-hoisting-in-1',
       './x.js': 'scope-hoisting-in-2'
     },
     './x.js',
     'scope-hoisting-out')">
-    <svg style="width:135px;height:60px">
+    <svg style="width:105px;height:60px">
       <image x="0" y="0" height="60px" href="img/rollup.svg" class="rollup-button-image" />
-      <path d="M60,25 h50 l-10,-10 l30,15 l-30,15 l10,-10 h-50"
-            pathLength="100" class="history-line rollup-button-line"/>
+      <path d="M70,10 v30 l-10,-2 l20,15 l20,-15 l-10,2 v-30"
+            pathLength="100" class="history-line rollup-button-line" style="animation-delay:0.6s;"/>
     </svg>
   </button>
-</div>
-<div class="left-align-box" style="margin-left: 40px; min-width:300px;">
   `bundle.js`
-  <pre id="scope-hoisting-out-pre"><code id="scope-hoisting-out" class="lang-javascript hljs"></code></pre>
+  <pre><code id="scope-hoisting-out" class="lang-javascript hljs"></code></pre>
 </div>
 
 --
@@ -318,6 +318,8 @@ if (true) {
   x = getValue();
 }</span><span class="fragment show-red-once" data-fragment-index="0">Dead branch</span></code></pre>
 
+<span class="fragment"></span>
+
 --
 
 ## Tree-Shaking
@@ -337,6 +339,8 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
 }</span> else {<span class="fragment show-green-once" data-fragment-index="1">Modifies included variable</span>
   x = getValue();
 }</code></pre>
+
+<span class="fragment"></span>
 
 ---
 
@@ -401,7 +405,7 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
 
 --
 
-## Hello Open-Closed-Principle
+## Some more<br>Open-Closed-Principle
 
 <div style="text-align:left;display:inline-block">
   <div class="fragment">
@@ -444,3 +448,62 @@ function doubleY() {<span class="fragment show-red-once" data-fragment-index="2"
 </code></pre>
 
 <div class="fragment" data-fragment-index="0"><span class="fragment" data-fragment-index="17" style="position:absolute;color:green">Done</span><span class="fragment fade-out" data-fragment-index="16">Pass <span class="fragment" data-fragment-index="8" style="position:absolute;">2</span><span class="fragment fade-out" data-fragment-index="7">1<span class="fragment" data-fragment-index="7">, second pass needed</span></span></span></div>
+
+--
+
+## Next: Value-Tracking
+
+<div style="text-align:left;display:inline-block">
+  <div class="fragment">
+    <ul>
+      <li>Separate <span class="highlight">Variable</span> objects from declarations</li>
+      <li>Variables track initial values and reassignments</li>
+      <li>A "value" is an <span class="highlight">AST node</span></li>
+    </ul>
+  </div>
+  <div class="fragment">
+    <p>
+    Due to performance considerations:
+    </p>
+    <ul>
+      <li>Value of reassigned variables is<br><span class="highlight">UNKNOWN_NODE</span></li>
+    </ul>
+  </div>
+</div>
+
+--
+
+## Value-Tracking in action
+
+<div class="left-align-box">
+  `main.js`
+  <pre><code id="value-tracking-in" contenteditable class="lang-javascript hljs">const x1 = [1, 2, 3];
+const x2 = x1.map(v => 2*v)
+             .join();
+
+const y1 = {
+  getValue: () => 2
+};
+const y2 = y1.getValue()
+             .toFixed();
+</code></pre>
+</div>
+<div class="left-align-box" style="margin-left: 40px; min-width:300px;">
+  <button class="rollup-button" onclick="rollupToBlock({
+      './main.js': 'value-tracking-in'
+    },
+    './main.js',
+    'value-tracking-out')">
+    <svg style="width:105px;height:60px">
+      <image x="0" y="0" height="60px" href="img/rollup.svg" class="rollup-button-image" />
+      <path d="M70,10 v30 l-10,-2 l20,15 l20,-15 l-10,2 v-30"
+            pathLength="100" class="history-line rollup-button-line" style="animation-delay:0.6s;"/>
+    </svg>
+  </button>
+  `bundle.js`
+  <pre><code id="value-tracking-out" class="lang-javascript hljs"></code></pre>
+</div>
+
+--
+
+## Also: Object shape tracking

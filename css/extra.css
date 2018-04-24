@@ -134,8 +134,8 @@ html .left-align-box {
     padding: 0;
     font: inherit;
     cursor: pointer;
-    margin-left: auto;
     outline: none;
+    margin-top: 20px;
 }
 
 .rollup-button:hover .rollup-button-line {
