@@ -427,18 +427,20 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
 
 ## Checking for side-effects
 
-<pre style="display:inline-block;"><code class="lang-javascript hljs" data-noescape><span class="fragment turn-green" data-fragment-index="0">export let x;</span><span class="fragment show-green-once" data-fragment-index="0" style="position:absolute">Part of API</span><span class="fragment show-blue-once" data-fragment-index="6" style="position:absolute">hasEffectsWhenAssigned?</span><span class="fragment show-green-once" data-fragment-index="7">hasEffectsWhenAssigned: true</span>
-let y;<span class="fragment show-red-once" data-fragment-index="1">hasEffects: false</span>
+<pre style="display:inline-block;"><code class="lang-javascript hljs" data-noescape><span class="fragment turn-green" data-fragment-index="0">export let x;</span><span class="fragment show-green-once" data-fragment-index="0" style="position:absolute">Part of API</span><span class="fragment show-blue-once" data-fragment-index="6" style="position:absolute">hasEffectsWhenAssigned?</span><span class="fragment show-green-once" data-fragment-index="7" style="position:absolute">hasEffectsWhenAssigned: true</span><span class="fragment show-blue-once" data-fragment-index="10" style="position:absolute">hasEffectsWhenAssigned?</span><span class="fragment show-green-once" data-fragment-index="11">hasEffectsWhenAssigned: true</span>
+let y;<span class="fragment show-red-once" data-fragment-index="1" style="position:absolute;">hasEffects: false</span><span class="fragment show-red-once" data-fragment-index="8" style="position:absolute">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="12" style="position:absolute">hasEffectsWhenAssigned?</span><span class="fragment show-red-once" data-fragment-index="13" style="position:absolute">hasEffectsWhenAssigned: false</span><span class="fragment show-blue-once" data-fragment-index="15" style="position:absolute">hasEffectsWhenAssigned?</span><span class="fragment show-red-once" data-fragment-index="16">hasEffectsWhenAssigned: false</span>
 
-function doubleY() {<span class="fragment show-red-once" data-fragment-index="2">hasEffects: false</span>
-  y = 2 * y;
+function doubleY() {<span class="fragment show-red-once" data-fragment-index="2" style="position:absolute;">hasEffects: false</span><span class="fragment show-red-once" data-fragment-index="9" style="position:absolute;">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="14" style="position:absolute">hasEffectsWhenCalled?</span><span class="fragment show-red-once" data-fragment-index="16">hasEffectsWhenCalled: false</span>
+  y = 2 * y;<span class="fragment show-blue-once" data-fragment-index="15" style="position:absolute">hasEffects?</span><span class="fragment show-red-once" data-fragment-index="16">hasEffects: false</span>
 }
 
 <span class="fragment turn-green" data-fragment-index="7">function assignValues() {</span><span class="fragment show-red-once" data-fragment-index="3" style="position:absolute">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="4" style="position:absolute">hasEffectsWhenCalled?</span><span class="fragment show-green-once" data-fragment-index="7">hasEffectsWhenCalled: true</span>
-  x = 1;<span class="fragment show-blue-once" data-fragment-index="6" style="position:absolute">hasEffects?</span><span class="fragment show-green-once" data-fragment-index="7">hasEffects: true</span>
-  y = 1;
-  doubleY();
+  <span class="fragment turn-green" data-fragment-index="11">x = 1;</span><span class="fragment show-blue-once" data-fragment-index="6" style="position:absolute">hasEffects?</span><span class="fragment show-green-once" data-fragment-index="7" style="position:absolute;">hasEffects: true</span><span class="fragment show-blue-once" data-fragment-index="10" style="position:absolute">hasEffects?</span><span class="fragment show-green-once" data-fragment-index="11">hasEffects: true</span>
+  y = 1;<span class="fragment show-blue-once" data-fragment-index="12" style="position:absolute">hasEffects?</span><span class="fragment show-red-once" data-fragment-index="13">hasEffects: false</span>
+  doubleY();<span class="fragment show-blue-once" data-fragment-index="14" style="position:absolute">hasEffects?</span><span class="fragment show-red-once" data-fragment-index="16">hasEffects: false</span>
 <span class="fragment turn-green" data-fragment-index="7">}</span>
 
 <span class="fragment turn-green" data-fragment-index="7">assignValues();</span><span class="fragment show-blue-once" data-fragment-index="4" style="position:absolute">hasEffects?</span><span class="fragment show-green-once" data-fragment-index="7">hasEffects: true</span>
 </code></pre>
+
+<div class="fragment" data-fragment-index="0"><span class="fragment" data-fragment-index="17" style="position:absolute;color:green">Done</span><span class="fragment fade-out" data-fragment-index="16">Pass <span class="fragment" data-fragment-index="8" style="position:absolute;">2</span><span class="fragment fade-out" data-fragment-index="7">1<span class="fragment" data-fragment-index="7">, second pass needed</span></span></span></div>
