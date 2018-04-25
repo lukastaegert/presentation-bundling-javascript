@@ -164,11 +164,13 @@ html .rollup-button .rollup-button-image {
     display: inline-block;
 }
 
-.fragment.turn-red.visible {
+.fragment.turn-red.visible,
+.fragment.turn-red-once.current-fragment {
     background-color: #ffbbbb;
 }
 
-.fragment.turn-red.current-fragment {
+.fragment.turn-red.current-fragment,
+.fragment.turn-red-once.current-fragment {
     outline: 2px solid red;
 }
 
@@ -191,7 +193,10 @@ html .rollup-button .rollup-button-image {
 .fragment.show-blue-once span.hljs-keyword,
 .fragment.show-red-once span.hljs-literal,
 .fragment.show-green-once span.hljs-literal,
-.fragment.show-blue-once span.hljs-literal {
+.fragment.show-blue-once span.hljs-literal,
+.fragment.show-red-once span.hljs-string,
+.fragment.show-green-once span.hljs-string,
+.fragment.show-blue-once span.hljs-string {
     color: white;
 }
 
@@ -211,6 +216,11 @@ html .rollup-button .rollup-button-image {
 
 .fragment.show-green-once {
     background-color: green;
+}
+
+.fragment.turn-blue-once.current-fragment {
+    background-color: #bbbbff;
+    outline: 2px solid blue;
 }
 
 .fragment.show-blue-once {

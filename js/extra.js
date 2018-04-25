@@ -12,7 +12,7 @@ function rollupToBlock(blocksById, inputId, targetBlock) {
         return importee;
       },
       load(id) {
-        return document.getElementById(blocksById[id]).textContent;
+        return document.getElementById(blocksById[id]).innerText;
       }
     }],
     onwarn(warning) {

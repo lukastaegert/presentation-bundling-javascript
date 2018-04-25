@@ -451,7 +451,15 @@ function doubleY() {<span class="fragment show-red-once" data-fragment-index="2"
 
 --
 
-## Next: Value-Tracking
+## Now:<br>New features possible!
+
+- Value-Tracking
+- Object-Shape-Tracking
+- Function Return-Value-Tracking
+
+--
+
+## Value-Tracking
 
 <div style="text-align:left;display:inline-block">
   <div class="fragment">
@@ -475,19 +483,20 @@ function doubleY() {<span class="fragment show-red-once" data-fragment-index="2"
 
 ## Value-Tracking in action
 
-<div class="left-align-box">
+<div class="left-align-box" style="min-width:300px;">
   `main.js`
-  <pre><code id="value-tracking-in" contenteditable class="lang-javascript hljs">const x1 = [1, 2, 3];
-const x2 = x1
-  .map(v => 2*v)
-  .join();
+  <pre><code id="value-tracking-in" contenteditable class="lang-javascript hljs">console.log('effect');
 
-const y1 = {
-  getValue: () => 2
-};
-const y2 = y1
-  .getValue()
-  .toFixed();
+let x = 0;
+const setX = globalVar
+   ? () => x = 1
+   : () => x = 2;
+setX();
+
+const a = [1, 2, 3];
+const aString = a
+  .map(v => 2 * v)
+  .join();
 </code></pre>
 </div>
 <div class="left-align-box" style="margin-left: 40px; min-width:300px;">
@@ -508,4 +517,28 @@ const y2 = y1
 
 --
 
-## Also: Object shape tracking
+## Object shape tracking
+
+<div style="text-align:left;display:inline-block">
+  <p>
+  Make new effects shape-aware:
+  </p>
+  <ul>
+    <li>`hasEffectsWhenCalled`<span class="highlight section-appear" style="animation-delay:0.6s">`AtPath`</span></li>
+    <li>`hasEffectsWhenAccessed`<span class="highlight section-appear" style="animation-delay:0.8s">`AtPath`</span></li>
+    <li>`hasEffectsWhenAssigned`<span class="highlight section-appear" style="animation-delay:1.0s">`AtPath`</span></li>
+  </ul>
+</div>
+
+--
+
+## Tracking member access
+
+<pre style="display:inline-block;"><code class="lang-javascript hljs" data-noescape>const <span class="fragment turn-blue-once" data-fragment-index="3">obj</span> = <span class="fragment turn-blue-once" data-fragment-index="4">{
+  nested: <span class="fragment turn-blue-once" data-fragment-index="5">{
+    x: <span class="fragment turn-blue-once" data-fragment-index="6"><span class="fragment turn-red-once" data-fragment-index="7">() => {}</span></span><span class="fragment show-blue-once" data-fragment-index="6" style="position:absolute;">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-red-once" data-fragment-index="7" style="position:absolute;">hasEffectsWhenCalledAtPath([]): false</span>
+  }</span><span class="fragment show-blue-once" data-fragment-index="5" style="position:absolute;">hasEffectsWhenCalledAtPath(["x"])?</span>
+}</span><span class="fragment show-blue-once" data-fragment-index="4">hasEffectsWhenCalledAtPath(["nested", "x"])?</span>
+
+<span class="fragment turn-blue-once" data-fragment-index="0"><span class="fragment turn-blue-once" data-fragment-index="1"><span class="fragment turn-blue-once" data-fragment-index="2"><span class="fragment turn-blue-once" data-fragment-index="3">obj</span>.nested</span>.x</span>()</span>;<span class="fragment show-blue-once" data-fragment-index="0" style="position:absolute;">hasEffects?</span><span class="fragment show-red-once" data-fragment-index="7" style="position:absolute;">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="1" style="position:absolute;">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-blue-once" data-fragment-index="2" style="position:absolute;">hasEffectsWhenCalledAtPath(["x"])?</span><span class="fragment show-blue-once" data-fragment-index="3">hasEffectsWhenCalledAtPath(["nested", "x"])?</span>
+</code></pre>
