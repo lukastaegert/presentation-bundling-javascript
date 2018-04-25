@@ -429,25 +429,26 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
 
 --
 
-## Checking for side-effects
-
-<pre style="display:inline-block;"><code class="lang-javascript hljs" data-noescape><span class="fragment turn-green" data-fragment-index="0">export let x;</span><span class="fragment show-green-once" data-fragment-index="0" style="position:absolute">Part of API</span><span class="fragment show-blue-once" data-fragment-index="6" style="position:absolute">hasEffectsWhenAssigned?</span><span class="fragment show-green-once" data-fragment-index="7" style="position:absolute">hasEffectsWhenAssigned: true</span><span class="fragment show-blue-once" data-fragment-index="10" style="position:absolute">hasEffectsWhenAssigned?</span><span class="fragment show-green-once" data-fragment-index="11">hasEffectsWhenAssigned: true</span>
-let y;<span class="fragment show-red-once" data-fragment-index="1" style="position:absolute;">hasEffects: false</span><span class="fragment show-red-once" data-fragment-index="8" style="position:absolute">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="12" style="position:absolute">hasEffectsWhenAssigned?</span><span class="fragment show-red-once" data-fragment-index="13" style="position:absolute">hasEffectsWhenAssigned: false</span><span class="fragment show-blue-once" data-fragment-index="15" style="position:absolute">hasEffectsWhenAssigned?</span><span class="fragment show-red-once" data-fragment-index="16">hasEffectsWhenAssigned: false</span>
-
-function doubleY() {<span class="fragment show-red-once" data-fragment-index="2" style="position:absolute;">hasEffects: false</span><span class="fragment show-red-once" data-fragment-index="9" style="position:absolute;">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="14" style="position:absolute">hasEffectsWhenCalled?</span><span class="fragment show-red-once" data-fragment-index="16">hasEffectsWhenCalled: false</span>
-  y = 2 * y;<span class="fragment show-blue-once" data-fragment-index="15" style="position:absolute">hasEffects?</span><span class="fragment show-red-once" data-fragment-index="16">hasEffects: false</span>
-}
-
-<span class="fragment turn-green" data-fragment-index="7">function assignValues() {</span><span class="fragment show-red-once" data-fragment-index="3" style="position:absolute">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="4" style="position:absolute">hasEffectsWhenCalled?</span><span class="fragment show-green-once" data-fragment-index="7">hasEffectsWhenCalled: true</span>
-  <span class="fragment turn-green" data-fragment-index="11">x = 1;</span><span class="fragment show-blue-once" data-fragment-index="6" style="position:absolute">hasEffects?</span><span class="fragment show-green-once" data-fragment-index="7" style="position:absolute;">hasEffects: true</span><span class="fragment show-blue-once" data-fragment-index="10" style="position:absolute">hasEffects?</span><span class="fragment show-green-once" data-fragment-index="11">hasEffects: true</span>
-  y = 1;<span class="fragment show-blue-once" data-fragment-index="12" style="position:absolute">hasEffects?</span><span class="fragment show-red-once" data-fragment-index="13">hasEffects: false</span>
-  doubleY();<span class="fragment show-blue-once" data-fragment-index="14" style="position:absolute">hasEffects?</span><span class="fragment show-red-once" data-fragment-index="16">hasEffects: false</span>
-<span class="fragment turn-green" data-fragment-index="7">}</span>
-
-<span class="fragment turn-green" data-fragment-index="7">assignValues();</span><span class="fragment show-blue-once" data-fragment-index="4" style="position:absolute">hasEffects?</span><span class="fragment show-green-once" data-fragment-index="7">hasEffects: true</span>
-</code></pre>
-
-<div class="fragment" data-fragment-index="0"><span class="fragment" data-fragment-index="17" style="position:absolute;color:green">Done</span><span class="fragment fade-out" data-fragment-index="16">Pass <span class="fragment" data-fragment-index="8" style="position:absolute;">2</span><span class="fragment fade-out" data-fragment-index="7">1<span class="fragment" data-fragment-index="7">, second pass needed</span></span></span></div>
+<div style="text-align:left;display:inline-block">
+  <h2>Checking for side-effects</h2>
+  <pre style="display:inline-block;"><code class="lang-javascript hljs" data-noescape><span class="fragment turn-green" data-fragment-index="0">export let x;</span><span class="fragment show-green-once" data-fragment-index="0">Part of API</span><span class="fragment show-blue-once" data-fragment-index="6">hasEffectsWhenAssigned?</span><span class="fragment show-green-once" data-fragment-index="7">hasEffectsWhenAssigned: true</span><span class="fragment show-blue-once" data-fragment-index="10">hasEffectsWhenAssigned?</span><span class="fragment show-green-once" data-fragment-index="11">hasEffectsWhenAssigned: true</span>
+  let y;<span class="fragment show-red-once" data-fragment-index="1">hasEffects: false</span><span class="fragment show-red-once" data-fragment-index="8">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="12">hasEffectsWhenAssigned?</span><span class="fragment show-red-once" data-fragment-index="13">hasEffectsWhenAssigned: false</span><span class="fragment show-blue-once" data-fragment-index="15">hasEffectsWhenAssigned?</span><span class="fragment show-red-once" data-fragment-index="16">hasEffectsWhenAssigned: false</span>
+  
+  function doubleY() {<span class="fragment show-red-once" data-fragment-index="2">hasEffects: false</span><span class="fragment show-red-once" data-fragment-index="9">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="14">hasEffectsWhenCalled?</span>
+    y = 2 * y;<span class="fragment show-blue-once" data-fragment-index="15">hasEffects?</span>
+  }
+  
+  <span class="fragment turn-green" data-fragment-index="7">function assignValues() {</span><span class="fragment show-red-once" data-fragment-index="3">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="4">hasEffectsWhenCalled?</span>
+    <span class="fragment turn-green" data-fragment-index="11">x = 1;</span><span class="fragment show-blue-once" data-fragment-index="6">hasEffects?</span><span class="fragment show-blue-once" data-fragment-index="10">hasEffects?</span><span class="fragment show-green-once" data-fragment-index="11">hasEffects: true</span>
+    y = 1;<span class="fragment show-blue-once" data-fragment-index="12">hasEffects?</span><span class="fragment show-red-once" data-fragment-index="13">hasEffects: false</span>
+    doubleY();<span class="fragment show-blue-once" data-fragment-index="14">hasEffects?</span><span class="fragment show-red-once" data-fragment-index="16">hasEffects: false</span>
+  <span class="fragment turn-green" data-fragment-index="7">}</span>
+  
+  <span class="fragment turn-green" data-fragment-index="7">assignValues();</span><span class="fragment show-blue-once" data-fragment-index="4">hasEffects?</span><span class="fragment show-green-once" data-fragment-index="7">hasEffects: true</span>
+  </code></pre>
+  
+  <div class="fragment" data-fragment-index="0"><span class="fragment" data-fragment-index="17" style="position:absolute;color:green">Done</span><span class="fragment fade-out" data-fragment-index="16">Pass <span class="fragment" data-fragment-index="8" style="position:absolute;">2</span><span class="fragment fade-out" data-fragment-index="7">1<span class="fragment" data-fragment-index="7">, second pass needed</span></span></span></div>
+</div>
 
 --
 
@@ -532,13 +533,14 @@ const aString = a
 
 --
 
-## Tracking member access
-
-<pre style="display:inline-block;"><code class="lang-javascript hljs" data-noescape>const <span class="fragment turn-blue-once" data-fragment-index="3">obj</span> = <span class="fragment turn-blue-once" data-fragment-index="4">{
-  nested: <span class="fragment turn-blue-once" data-fragment-index="5">{
-    x: <span class="fragment turn-blue-once" data-fragment-index="6"><span class="fragment turn-red-once" data-fragment-index="7">() => {}</span></span><span class="fragment show-blue-once" data-fragment-index="6" style="position:absolute;">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-red-once" data-fragment-index="7" style="position:absolute;">hasEffectsWhenCalledAtPath([]): false</span>
-  }</span><span class="fragment show-blue-once" data-fragment-index="5" style="position:absolute;">hasEffectsWhenCalledAtPath(["x"])?</span>
-}</span><span class="fragment show-blue-once" data-fragment-index="4">hasEffectsWhenCalledAtPath(["nested", "x"])?</span>
-
-<span class="fragment turn-blue-once" data-fragment-index="0"><span class="fragment turn-blue-once" data-fragment-index="1"><span class="fragment turn-blue-once" data-fragment-index="2"><span class="fragment turn-blue-once" data-fragment-index="3">obj</span>.nested</span>.x</span>()</span>;<span class="fragment show-blue-once" data-fragment-index="0" style="position:absolute;">hasEffects?</span><span class="fragment show-red-once" data-fragment-index="7" style="position:absolute;">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="1" style="position:absolute;">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-blue-once" data-fragment-index="2" style="position:absolute;">hasEffectsWhenCalledAtPath(["x"])?</span><span class="fragment show-blue-once" data-fragment-index="3">hasEffectsWhenCalledAtPath(["nested", "x"])?</span>
-</code></pre>
+<div style="text-align:left;display:inline-block">
+  <h2>Tracking member access</h2>
+  <pre style="display:inline-block"><code class="lang-javascript hljs" data-noescape>const <span class="fragment turn-blue-once" data-fragment-index="3">obj</span> = <span class="fragment turn-blue-once" data-fragment-index="4">{
+    nested: <span class="fragment turn-blue-once" data-fragment-index="5">{
+      x: <span class="fragment turn-blue-once" data-fragment-index="6"><span class="fragment turn-red-once" data-fragment-index="7">() => {}</span></span><span class="fragment show-blue-once" data-fragment-index="6">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-red-once" data-fragment-index="7">hasEffectsWhenCalledAtPath([]): false</span>
+    }</span><span class="fragment show-blue-once" data-fragment-index="5">hasEffectsWhenCalledAtPath(["x"])?</span>
+  }</span><span class="fragment show-blue-once" data-fragment-index="4">hasEffectsWhenCalledAtPath(["nested", "x"])?</span>
+  
+  <span class="fragment turn-blue-once" data-fragment-index="0"><span class="fragment turn-blue-once" data-fragment-index="1"><span class="fragment turn-blue-once" data-fragment-index="2"><span class="fragment turn-blue-once" data-fragment-index="3">obj</span>.nested</span>.x</span>()</span>;<span class="fragment show-blue-once" data-fragment-index="0">hasEffects?</span><span class="fragment show-red-once" data-fragment-index="7">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="1">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-blue-once" data-fragment-index="2">hasEffectsWhenCalledAtPath(["x"])?</span><span class="fragment show-blue-once" data-fragment-index="3">hasEffectsWhenCalledAtPath(["nested", "x"])?</span>
+  </code></pre>
+</div>

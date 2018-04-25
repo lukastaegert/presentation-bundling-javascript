@@ -184,8 +184,10 @@ html .rollup-button .rollup-button-image {
     opacity: 0 !important;
     color: white;
     border-radius: 3px;
-    margin-left: 50px;
     padding: 0 8px;
+    position: absolute;
+    right: -50px;
+    transform: translateX(100%);
 }
 
 .fragment.show-red-once span.hljs-keyword,
