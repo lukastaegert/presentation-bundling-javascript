@@ -303,12 +303,12 @@ Better dead code elimination?
 
 ## Traditional DCE
 
-<pre style="display:inline-block;"><code class="lang-javascript hljs" data-noescape><span class="fragment turn-red" data-fragment-index="1">import {getValue} from './getValue.js';</span><span class="fragment show-red-once" data-fragment-index="1">No included usages</span>
+<pre style="display:inline-block; margin-right:300px;"><code class="lang-javascript hljs" data-noescape><span class="fragment turn-red" data-fragment-index="1">import {getValue} from './y.js';</span><span class="fragment show-red-once" data-fragment-index="1">No included usages</span>
 
 <span class="fragment turn-red" data-fragment-index="0">function unUsed() {}</span><span class="fragment show-red-once" data-fragment-index="0">No usages</span>
 
-function ciruclar1(){ circular2() }
-function circular2(){ ciruclar1() }
+function ciruclar1(){circular2()}
+function circular2(){ciruclar1()}
 
 export let x;
 
@@ -316,16 +316,14 @@ if (true) {
   x = 'default';
 }<span class="fragment turn-red" data-fragment-index="0"> else {
   x = getValue();
-}</span><span class="fragment show-red-once" data-fragment-index="0">Dead branch</span></code></pre>
-
-<span class="fragment"></span>
+}</span><span class="fragment show-red-once" data-fragment-index="0">Dead branch</span><span class="fragment none" data-fragment-index="100"></span></code></pre>
 
 --
 
 ## Tree-Shaking
 ("Mark-and-Sweep DCE")
 
-<pre style="display:inline-block;"><code class="lang-javascript hljs" data-noescape>import {getValue} from './getValue.js';
+<pre style="display:inline-block; margin-right:300px;"><code class="lang-javascript hljs" data-noescape>import {getValue} from './getValue.js';
 
 function unUsed() {}
 
@@ -338,9 +336,7 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
   x = 'default';
 }</span> else {<span class="fragment show-green-once" data-fragment-index="1">Modifies included variable</span>
   x = getValue();
-}</code></pre>
-
-<span class="fragment"></span>
+}<span class="fragment none" data-fragment-index="100"></span></code></pre></code></pre>
 
 ---
 
@@ -445,7 +441,7 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
   <span class="fragment turn-green" data-fragment-index="7">}</span>
   
   <span class="fragment turn-green" data-fragment-index="7">assignValues();</span><span class="fragment show-blue-once" data-fragment-index="4">hasEffects?</span><span class="fragment show-green-once" data-fragment-index="7">hasEffects: true</span>
-  </code></pre>
+</code></pre>
   
   <div class="fragment" data-fragment-index="0"><span class="fragment" data-fragment-index="17" style="position:absolute;color:green">Done</span><span class="fragment fade-out" data-fragment-index="16">Pass <span class="fragment" data-fragment-index="8" style="position:absolute;">2</span><span class="fragment fade-out" data-fragment-index="7">1<span class="fragment" data-fragment-index="7">, second pass needed</span></span></span></div>
 </div>
@@ -536,11 +532,37 @@ const aString = a
 <div style="text-align:left;display:inline-block">
   <h2>Tracking member access</h2>
   <pre style="display:inline-block"><code class="lang-javascript hljs" data-noescape>const <span class="fragment turn-blue-once" data-fragment-index="3">obj</span> = <span class="fragment turn-blue-once" data-fragment-index="4">{
-    nested: <span class="fragment turn-blue-once" data-fragment-index="5">{
-      x: <span class="fragment turn-blue-once" data-fragment-index="6"><span class="fragment turn-red-once" data-fragment-index="7">() => {}</span></span><span class="fragment show-blue-once" data-fragment-index="6">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-red-once" data-fragment-index="7">hasEffectsWhenCalledAtPath([]): false</span>
-    }</span><span class="fragment show-blue-once" data-fragment-index="5">hasEffectsWhenCalledAtPath(["x"])?</span>
-  }</span><span class="fragment show-blue-once" data-fragment-index="4">hasEffectsWhenCalledAtPath(["nested", "x"])?</span>
+  nested: <span class="fragment turn-blue-once" data-fragment-index="5">{
+    x: <span class="fragment turn-blue-once" data-fragment-index="6"><span class="fragment turn-red-once" data-fragment-index="7">() => {}</span></span><span class="fragment show-blue-once" data-fragment-index="6">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-red-once" data-fragment-index="7">hasEffectsWhenCalledAtPath([]): false</span>
+  }</span><span class="fragment show-blue-once" data-fragment-index="5">hasEffectsWhenCalledAtPath(["x"])?</span>
+}</span><span class="fragment show-blue-once" data-fragment-index="4">hasEffectsWhenCalledAtPath(["nested", "x"])?</span>
   
-  <span class="fragment turn-blue-once" data-fragment-index="0"><span class="fragment turn-blue-once" data-fragment-index="1"><span class="fragment turn-blue-once" data-fragment-index="2"><span class="fragment turn-blue-once" data-fragment-index="3">obj</span>.nested</span>.x</span>()</span>;<span class="fragment show-blue-once" data-fragment-index="0">hasEffects?</span><span class="fragment show-red-once" data-fragment-index="7">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="1">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-blue-once" data-fragment-index="2">hasEffectsWhenCalledAtPath(["x"])?</span><span class="fragment show-blue-once" data-fragment-index="3">hasEffectsWhenCalledAtPath(["nested", "x"])?</span>
-  </code></pre>
+<span class="fragment turn-blue-once" data-fragment-index="0"><span class="fragment turn-blue-once" data-fragment-index="1"><span class="fragment turn-blue-once" data-fragment-index="2"><span class="fragment turn-blue-once" data-fragment-index="3">obj</span>.nested</span>.x</span>()</span>;<span class="fragment show-blue-once" data-fragment-index="0">hasEffects?</span><span class="fragment show-red-once" data-fragment-index="7">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="1">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-blue-once" data-fragment-index="2">hasEffectsWhenCalledAtPath(["x"])?</span><span class="fragment show-blue-once" data-fragment-index="3">hasEffectsWhenCalledAtPath(["nested", "x"])?</span>
+</code></pre>
+</div>
+
+--
+
+## Return value tracking
+
+<ul>
+  <li>Return statements register themselves<br>on the function scope</li>
+  <li>Allows tree-shaking curried functions</li>
+  <li>New method:<br><span class="highlight">`someReturnExpressionWhenCalledAtPath`</span></li>
+</ul>
+
+--
+
+<div style="text-align:left;display:inline-block">
+  <h2>Tracking return values</h2>
+  <pre style="display:inline-block"><code class="lang-javascript hljs" data-noescape>function getValue(x) {
+  if (x > 0) {
+    return () => 1;
+  } else if (x === 0) {
+    return () => 0;
+  }
+}
+
+const val = getValue(1)();
+</code></pre>
 </div>
