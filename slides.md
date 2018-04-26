@@ -387,13 +387,9 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
 (ca. summer 2017)
 
 <ul>
-<li class="fragment">Custom AST extensions</li>
-<li class="fragment">
-  <span class="highlight">`ASTNode.hasEffects()`</span>
-  <ul class="fragment">
-    <li>Only checked for certain top-level statements</li>
-  </ul>
-</li>
+<li class="fragment">Based on custom AST extensions</li>
+<li class="fragment"><span class="highlight">`ASTNode.hasEffects()`</span></li>
+<li class="fragment">Only works on certain top-level statements</li>
 <li class="fragment"><span class="highlight">`CallExpression.hasEffects()`</span>: Several
   <br>hundred buggy lines of custom logic duplicating
   <br>other code</li>
@@ -401,7 +397,7 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
 
 --
 
-## Some<br>Open-Closed-Principle
+## Applying the<br>Open-Closed-Principle
 
 <div style="text-align:left;display:inline-block">
   <div class="fragment">
@@ -425,9 +421,10 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
 
 --
 
+## Checking for side-effects
+
 <div style="text-align:left;display:inline-block">
-  <h2>Checking for side-effects</h2>
-  <pre style="display:inline-block;"><code class="lang-javascript hljs" data-noescape><span class="fragment turn-green" data-fragment-index="0">export let x;</span><span class="fragment show-green-once" data-fragment-index="0">Part of API</span><span class="fragment show-blue-once" data-fragment-index="6">hasEffectsWhenAssigned?</span><span class="fragment show-green-once" data-fragment-index="7">hasEffectsWhenAssigned: true</span><span class="fragment show-blue-once" data-fragment-index="10">hasEffectsWhenAssigned?</span><span class="fragment show-green-once" data-fragment-index="11">hasEffectsWhenAssigned: true</span>
+  <pre style="margin-right:300px;"><code class="lang-javascript hljs" data-noescape><span class="fragment turn-green" data-fragment-index="0">export let x;</span><span class="fragment show-green-once" data-fragment-index="0">Part of API</span><span class="fragment show-blue-once" data-fragment-index="6">hasEffectsWhenAssigned?</span><span class="fragment show-green-once" data-fragment-index="7">hasEffectsWhenAssigned: true</span><span class="fragment show-blue-once" data-fragment-index="10">hasEffectsWhenAssigned?</span><span class="fragment show-green-once" data-fragment-index="11">hasEffectsWhenAssigned: true</span>
   let y;<span class="fragment show-red-once" data-fragment-index="1">hasEffects: false</span><span class="fragment show-red-once" data-fragment-index="8">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="12">hasEffectsWhenAssigned?</span><span class="fragment show-red-once" data-fragment-index="13">hasEffectsWhenAssigned: false</span><span class="fragment show-blue-once" data-fragment-index="15">hasEffectsWhenAssigned?</span><span class="fragment show-red-once" data-fragment-index="16">hasEffectsWhenAssigned: false</span>
   
   function doubleY() {<span class="fragment show-red-once" data-fragment-index="2">hasEffects: false</span><span class="fragment show-red-once" data-fragment-index="9">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="14">hasEffectsWhenCalled?</span>
@@ -448,11 +445,11 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
 
 --
 
-## Now:<br>New features possible!
+## A foundation for<br>new features
 
-- Value-Tracking
-- Object-Shape-Tracking
-- Function Return-Value-Tracking
+- <span class="highlight">Value</span>-Tracking
+- <span class="highlight">Object-Shape</span>-Tracking
+- Function <span class="highlight">Return-Value</span>-Tracking
 
 --
 
@@ -462,7 +459,7 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
   <div class="fragment">
     <ul>
       <li>Separate <span class="highlight">Variable</span> objects from declarations</li>
-      <li>Variables track initial values and reassignments</li>
+      <li>Variables <span class="highlight">track</span> initial values and reassignments</li>
       <li>A "value" is an <span class="highlight">AST node</span></li>
     </ul>
   </div>
@@ -529,9 +526,9 @@ const aString = a
 
 --
 
-<div style="text-align:left;display:inline-block">
-  <h2>Tracking member access</h2>
-  <pre style="display:inline-block"><code class="lang-javascript hljs" data-noescape>const <span class="fragment turn-blue-once" data-fragment-index="3">obj</span> = <span class="fragment turn-blue-once" data-fragment-index="4">{
+## Tracking member access
+
+<pre style="display:inline-block;margin-right:400px;"><code class="lang-javascript hljs" data-noescape>const <span class="fragment turn-blue-once" data-fragment-index="3">obj</span> = <span class="fragment turn-blue-once" data-fragment-index="4">{
   nested: <span class="fragment turn-blue-once" data-fragment-index="5">{
     x: <span class="fragment turn-blue-once" data-fragment-index="6"><span class="fragment turn-red-once" data-fragment-index="7">() => {}</span></span><span class="fragment show-blue-once" data-fragment-index="6">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-red-once" data-fragment-index="7">hasEffectsWhenCalledAtPath([]): false</span>
   }</span><span class="fragment show-blue-once" data-fragment-index="5">hasEffectsWhenCalledAtPath(["x"])?</span>
@@ -539,7 +536,6 @@ const aString = a
   
 <span class="fragment turn-blue-once" data-fragment-index="0"><span class="fragment turn-blue-once" data-fragment-index="1"><span class="fragment turn-blue-once" data-fragment-index="2"><span class="fragment turn-blue-once" data-fragment-index="3">obj</span>.nested</span>.x</span>()</span>;<span class="fragment show-blue-once" data-fragment-index="0">hasEffects?</span><span class="fragment show-red-once" data-fragment-index="7">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="1">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-blue-once" data-fragment-index="2">hasEffectsWhenCalledAtPath(["x"])?</span><span class="fragment show-blue-once" data-fragment-index="3">hasEffectsWhenCalledAtPath(["nested", "x"])?</span>
 </code></pre>
-</div>
 
 --
 
@@ -553,16 +549,16 @@ const aString = a
 
 --
 
-<div style="text-align:left;display:inline-block">
-  <h2>Tracking return values</h2>
-  <pre style="display:inline-block"><code class="lang-javascript hljs" data-noescape>function getValue(x) {
-  if (x > 0) {
-    return () => 1;
-  } else if (x === 0) {
-    return () => 0;
-  }
-}
+## Tracking return values
 
-const val = getValue(1)();
+<pre style="display:inline-block;margin-right:400px;"><code class="lang-javascript hljs" data-noescape>function <span class="fragment turn-blue-once" data-fragment-index="2">getValue</span>(x) {
+  if (x > 0) {
+    return <span class="fragment turn-blue-once" data-fragment-index="3"><span class="fragment turn-red-once" data-fragment-index="4">() => 1</span></span>;<span class="fragment show-blue-once" data-fragment-index="3">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-red-once" data-fragment-index="4">hasEffectsWhenCalledAtPath([]): false</span>
+  } else if (x === 0) {
+    return <span class="fragment turn-blue-once" data-fragment-index="3"><span class="fragment turn-red-once" data-fragment-index="4">() => 0</span></span>;<span class="fragment show-blue-once" data-fragment-index="3">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-red-once" data-fragment-index="4">hasEffectsWhenCalledAtPath([]): false</span>
+  }
+  <span class="fragment add-red" data-fragment-index="3">return <span class="fragment turn-blue-once" data-fragment-index="3"><span class="fragment turn-green-once" data-fragment-index="4">undefined</span></span>;</span><span class="fragment show-blue-once" data-fragment-index="3">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-green-once" data-fragment-index="4">hasEffectsWhenCalledAtPath([]): true</span>
+}
+const val = <span class="fragment turn-blue-once" data-fragment-index="0"><span class="fragment turn-blue-once" data-fragment-index="1"><span class="fragment turn-blue-once" data-fragment-index="2">getValue</span>(1)</span>()</span>;<span class="fragment show-blue-once" data-fragment-index="0">hasEffects?</span><span class="fragment show-blue-once" data-fragment-index="1">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-blue-once" data-fragment-index="2">someReturnExpressionWhenCalledAtPath([],<br>  hasEffectsWhenCalledAtPath([])?)?</span><span class="fragment show-green-once" data-fragment-index="4">hasEffects: true</span>
 </code></pre>
 </div>

@@ -208,11 +208,13 @@ html .rollup-button .rollup-button-image {
     opacity: 1 !important;
 }
 
-.fragment.turn-green.visible {
+.fragment.turn-green.visible,
+.fragment.turn-green-once.current-fragment {
     background-color: #bbffbb;
 }
 
-.fragment.turn-green.current-fragment {
+.fragment.turn-green.current-fragment,
+.fragment.turn-green-once.current-fragment {
     outline: 2px solid green;
 }
 
@@ -227,4 +229,19 @@ html .rollup-button .rollup-button-image {
 
 .fragment.show-blue-once {
     background-color: blue;
+}
+
+.fragment.add-red {
+    opacity: 0 !important;
+    color: red !important;
+}
+
+.fragment.add-red span.hljs-keyword,
+.fragment.add-red span.hljs-literal,
+.fragment.add-red span.hljs-string {
+    color: red;
+}
+
+.fragment.add-red.visible {
+    opacity: 1 !important;
 }
