@@ -447,13 +447,13 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
 
 ## A foundation for<br>new features
 
-- <span class="highlight">Value</span>-Tracking
-- <span class="highlight">Object-Shape</span>-Tracking
-- Function <span class="highlight">Return-Value</span>-Tracking
+1. <span class="highlight">Value</span>-Tracking
+2. <span class="highlight">Object-Shape</span>-Tracking
+3. Function <span class="highlight">Return-Value</span>-Tracking
 
 --
 
-## Value-Tracking
+## 1. Value-Tracking
 
 <div style="text-align:left;display:inline-block">
   <div class="fragment">
@@ -511,7 +511,7 @@ const aString = a
 
 --
 
-## Object shape tracking
+## 2. Object shape tracking
 
 <div style="text-align:left;display:inline-block">
   <p>
@@ -539,7 +539,7 @@ const aString = a
 
 --
 
-## Return value tracking
+## 3. Return value tracking
 
 <ul>
   <li>Return statements register themselves<br>on the function scope</li>
@@ -562,3 +562,35 @@ const aString = a
 const val = <span class="fragment turn-blue-once" data-fragment-index="0"><span class="fragment turn-blue-once" data-fragment-index="1"><span class="fragment turn-blue-once" data-fragment-index="2">getValue</span>(1)</span>()</span>;<span class="fragment show-blue-once" data-fragment-index="0">hasEffects?</span><span class="fragment show-blue-once" data-fragment-index="1">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-blue-once" data-fragment-index="2">someReturnExpressionWhenCalledAtPath([],<br>  hasEffectsWhenCalledAtPath([])?)?</span><span class="fragment show-green-once" data-fragment-index="4">hasEffects: true</span>
 </code></pre>
 </div>
+
+--
+
+## What is on the road map?
+
+- Extend known builtin globals
+- Value-tracking across destructuring
+- Object literal property tree-shaking
+- Value inlining
+- …
+
+---
+
+# V
+## Should you use Rollup?
+
+--
+
+[medium.com/webpack/webpack-and-rollup-the-same-but-different-a41ad427058c](https://medium.com/webpack/webpack-and-rollup-the-same-but-different-a41ad427058c)
+
+<img src="img/rollup-for-libraries-article.png" style="width:550px">
+
+--
+
+## Built for optimizing libraries
+
+- Many supported output formats:<br>
+  <span class="highlight">IIFE</span>,  <span class="highlight">CJS</span>, <span class="highlight">AMD</span>, <span class="highlight">UMD</span>, <span class="highlight">ESM</span>, <span class="highlight">SystemJS</span>
+- Readable code:<br>
+  Preserves most original formatting
+- Preserves annotations and other comments
+- No runtime loader overhead
