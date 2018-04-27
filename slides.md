@@ -591,6 +591,96 @@ const val = <span class="fragment turn-blue-once" data-fragment-index="0"><span 
 - Many supported output formats:<br>
   <span class="highlight">IIFE</span>,  <span class="highlight">CJS</span>, <span class="highlight">AMD</span>, <span class="highlight">UMD</span>, <span class="highlight">ESM</span>, <span class="highlight">SystemJS</span>
 - Readable code:<br>
-  Preserves most original formatting
+  Preserves original formatting
 - Preserves annotations and other comments
-- No runtime loader overhead
+- No runtime loader overhead!
+
+--
+
+## Rich plugin ecosystem
+
+[github.com/rollup/rollup/wiki/Plugins](https://github.com/rollup/rollup/wiki/Plugins)
+
+- CJS, AMD module import
+- Babel, Uglify, Closure Compiler
+- TypeScript, Elm, ReasonML/OCaml,<br>WebAssembly
+- In memory bundling via plugin<br>(even in browsers!)
+- Import code from markdown documents
+- …
+
+--
+
+## Trusted by some of the best
+
+React, Vue, D3, Moment, Three.js,<br>Ember, Angular, Babylon,<br>Jest, Bootstrap,<br>Leaflet, Prettier…
+
+--
+
+## What about web apps?
+
+- Plugins for CSS, LESS, SASS
+- Dev server plugin<br>(combines nicely with watch mode)
+- HTML template plugin
+
+But there is more…
+
+--
+
+## Code-splitting (New!)
+
+- No code duplication
+- Still no runtime loader!<br>
+  (bring your own AMD/SystemJS loader, or<br>
+  use ES6 modules in modern browsers,<br>
+  CJS modules in Node)
+- Dynamic import support
+- Dependency-content-aware hashes<br>in file names
+- …
+
+---
+
+# VI
+## The current team
+
+--
+
+## Rich-Harris
+
+![rich-harris](img/rich-harris.jpg) <!-- .element style="float:left; height: 300px" -->
+
+- Created Rollup in 2015
+- Journalist and creator of<br>*countless* JS frameworks<br>(check out Svelte!)
+
+--
+
+## Guy Bedford
+
+![guy-bedford](img/guy-bedford.jpg) <!-- .element style="float:left; height: 300px" -->
+
+- Created SystemJS and JSPM
+- Brought code-splitting to Rollup
+- Core team since Dec 2017
+
+--
+
+## Lukas Taegert (i.e. myself)
+
+![lukas-taegert](img/lukas-taegert.jpg) <!-- .element style="float:left; height: 300px" -->
+
+- Refactored tree-shaking<br>since Jul 2017
+- Core team since Sep 2017
+- Released all versions of Rollup<br>since Nov 2017
+
+--
+
+## Countless other contributors!
+
+Some notable mentions:
+- Kelly Selden: Added module-preserving rendering
+  <br>to get tree-shaking for Ember.js
+- Sven Sauleau: Core web assembly support for
+  <br>Webpack and Rollup (in development)
+
+--
+
+# Thank you!
