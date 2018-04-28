@@ -56,14 +56,15 @@ section.future .section-appear {
     animation: none;
 }
 
-.group-appear {
+.group-appear,
+.appear {
     opacity: 0;
     animation: none;
 }
 
 .section-appear,
-svg.current-fragment .svg-appear,
-g.current-fragment .group-appear {
+g.current-fragment .group-appear,
+.appear.current-fragment {
     animation: appear 1s ease both;
 }
 
@@ -143,7 +144,7 @@ html .left-align-box {
 }
 
 .rollup-button-image {
-    animation: 1s ease 0.6s both appear;
+    animation: 1s ease both appear;
 }
 
 .rollup-button-line {
@@ -244,4 +245,37 @@ html .rollup-button .rollup-button-image {
 
 .fragment.add-red.visible {
     opacity: 1 !important;
+}
+
+.reveal ul,
+.reveal ul ul {
+    list-style-type: none;
+}
+
+.reveal ul li {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.reveal ul ul li {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.reveal ul li::before {
+    content: "•";
+    color: darkblue;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em
+}
+
+.reveal ul ul li::before {
+    content: "▸︎";
+    color: darkblue;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+    position: relative;
+    left: -0.2em;
 }

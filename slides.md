@@ -1,7 +1,15 @@
 # Bundling JavaScript
 ## The Good, the Dead and the Ugly Code
 
+Lukas Taegert<br>
 TNG Technology Consulting, 2018-05-04
+<a href="https://www.tngtech.com/"><img src="img/tng.svg"></img></a>
+
+---
+
+<a href="https://nolanlawson.com/2016/08/15/the-cost-of-small-modules">
+<p>nolanlawson.com/2016/08/15/the-cost-of-small-modules</p>
+<img src="img/small-modules-article.png" style="width:550px"></a>
 
 ---
 
@@ -12,18 +20,18 @@ TNG Technology Consulting, 2018-05-04
 
 ## Modular JavaScript
 
-<svg class="full-size-svg fragment">
+<svg class="full-size-svg section-appear" style="animation-delay:0.4s">
   <path d="M15,50 V88 h15 h-15 V158 h15 h-15 V228 h15 h-15 V298 h15 h-15 V368 h15 h-15 V438 h15 h-15 V500 l5,-20 l-5,10 l-5,-10 l5,20"
-        pathLength="100" class="history-line svg-selfdraw" />
+        pathLength="100" class="history-line section-selfdraw" style="animation-delay:0.6s" />
 
   <g>
-    <text x="45" y="100" class="svg-appear" style="animation-delay:0.2s;">
+    <text x="45" y="100" class="section-appear" style="animation-delay:0.8s;">
       IIFEs
     </text>
   </g>
 
   <g class="fragment none">
-    <text x="45" y="170" class="svg-appear group-highlight" style="animation-delay:0.4s;">
+    <text x="45" y="170" class="section-appear group-highlight" style="animation-delay:1.0s;">
       CJS
     </text>
     <path d="M45,183 H300 V500 H750 V50 H300 V183"
@@ -40,19 +48,19 @@ TNG Technology Consulting, 2018-05-04
   </g>
 
   <g>
-    <text x="45" y="240" class="svg-appear" style="animation-delay:0.6s;">
+    <text x="45" y="240" class="section-appear" style="animation-delay:1.2s;">
       AMD
     </text>
   </g>
 
   <g>
-    <text x="45" y="310" class="svg-appear" style="animation-delay:0.8s;">
+    <text x="45" y="310" class="section-appear" style="animation-delay:1.4s;">
       UMD
     </text>
   </g>
 
   <g class="fragment none">
-    <text x="45" y="380" class="svg-appear group-highlight" style="animation-delay:1.0s;">
+    <text x="45" y="380" class="section-appear group-highlight" style="animation-delay:1.6s;">
       ESM
     </text>
     <path d="M45,393 H300 V500 H750 V50 H300 V393"
@@ -70,7 +78,7 @@ TNG Technology Consulting, 2018-05-04
   </g>
 
   <g>
-    <text x="45" y="450" class="svg-appear" style="animation-delay:1.2s;">
+    <text x="45" y="450" class="section-appear" style="animation-delay:1.8s;">
       SystemJS
     </text>
   </g>
@@ -101,12 +109,12 @@ Fewer requests <svg class="right-arrow-svg">
 
 ## Tooling
 
-<svg class="full-size-svg fragment">
+<svg class="full-size-svg section-appear" style="animation-delay:0.4s">
   <path d="M15,50 V120 h15 h-15 V260 h15 h-15 V400 h15 h-15 V500 l5,-20 l-5,10 l-5,-10 l5,20"
-        pathLength="100" class="history-line svg-selfdraw" />
+        pathLength="100" class="history-line section-selfdraw" style="animation-delay:0.6s" />
 
   <g class="fragment none">
-    <text x="45" y="132" class="svg-appear group-highlight" style="animation-delay:0.2s;">
+    <text x="45" y="132" class="section-appear group-highlight" style="animation-delay:0.8s;">
       Browserify
     </text>
     <path d="M45,145 H300 V500 H750 V50 H300 V145"
@@ -122,7 +130,7 @@ Fewer requests <svg class="right-arrow-svg">
    </g>
 
   <g class="fragment none">
-    <text x="45" y="272" class="svg-appear group-highlight" style="animation-delay:0.4s;">
+    <text x="45" y="272" class="section-appear group-highlight" style="animation-delay:1.0s;">
       Webpack
     </text>
     <path d="M45,285 H300 V500 H750 V50 H300 V285"
@@ -139,7 +147,7 @@ Fewer requests <svg class="right-arrow-svg">
   </g>
 
   <g class="fragment none">
-    <text x="45" y="412" class="svg-appear group-highlight" style="animation-delay:0.6s;">
+    <text x="45" y="412" class="section-appear group-highlight" style="animation-delay:1.2s;">
       Rollup
     </text>
     <path d="M45,425 H300 V500 H750 V50 H300 V425"
@@ -162,24 +170,25 @@ Fewer requests <svg class="right-arrow-svg">
 
 --
 
+<!-- .slide: data-transition="slide" -->
 ## Why no runtime loader?
 
-<div class="fragment" style="text-align:left;display:inline-block">
-Execution order
-<table>
+<div style="text-align:left;display:inline-block">
+<h3 class="section-appear" style="animation-delay:0.4s">Execution order</h3>
+<table class="section-appear" style="animation-delay:0.6s">
   <tr>
     <th><span class="highlight">CJS</span>: dynamic</th>
-    <th><span class="highlight">ESM</span>: statically known</th>
+    <th class="section-appear" style="animation-delay:1.2s"><span class="highlight">ESM</span>: statically known</th>
   </tr>
   <tr>
-    <td>
+    <td class="section-appear" style="animation-delay:0.8s">
     `x.js`
-    <pre><code class="lang-javascript hljs">const x = 1;
+    <pre class="section-appear" style="animation-delay:1.0s"><code class="lang-javascript hljs">const x = 1;
 const y = require('./y.js');
 console.log(x, y);</code></pre></td>
-    <td>
+    <td class="section-appear" style="animation-delay:1.4s">
     `x.js`
-    <pre><code class="lang-javascript hljs">const x = 1;
+    <pre class="section-appear" style="animation-delay:1.6s"><code class="lang-javascript hljs">const x = 1;
 import {y} from './y.js';
 console.log(x, y);</code></pre></td>
   </tr>
@@ -202,32 +211,33 @@ console.log(x, y);</code></pre></td>
 
 --
 
+<!-- .slide: data-transition="slide" -->
 ## Why no runtime loader?
 
 <div style="text-align:left;display:inline-block">
-Live bindings
-<table class="fragment">
+<h3 class="section-appear" style="animation-delay:0.4s">Live bindings</h3>
+<table class="section-appear" style="animation-delay:0.6s">
   <tr>
     <th><span class="highlight">CJS</span></th>
-    <th><span class="highlight">ESM</span></th>
+    <th class="section-appear" style="animation-delay:1.4s"><span class="highlight">ESM</span></th>
   </tr>
   <tr>
-    <td>
+    <td class="section-appear" style="animation-delay:0.8s">
     `y.js`
-    <pre><code class="lang-javascript hljs">module.exports = 1;
+    <pre class="section-appear" style="animation-delay:1.0s"><code class="lang-javascript hljs">module.exports = 1;
 setTimeout(() =>
   module.exports = 2);</code></pre>
     `x.js`
-    <pre><code class="lang-javascript hljs">const y = require('./y.js');
+    <pre class="section-appear" style="animation-delay:1.2s"><code class="lang-javascript hljs">const y = require('./y.js');
 setTimeout(() =>
   console.log(y));</code></pre>
     </td>
-    <td>
+    <td class="section-appear" style="animation-delay:1.6s">
     `y.js`
-    <pre><code class="lang-javascript hljs">export let y = 1;
+    <pre class="section-appear" style="animation-delay:1.8s"><code class="lang-javascript hljs">export let y = 1;
 setTimeout(() => y = 2);</code></pre>
     `x.js`
-    <pre><code class="lang-javascript hljs">import {y} from './y.js';
+    <pre class="section-appear" style="animation-delay:2.0s"><code class="lang-javascript hljs">import {y} from './y.js';
 setTimeout(() =>
   console.log(y));</code></pre>
     </td>
@@ -245,18 +255,19 @@ setTimeout(() =>
 
 --
 
+<!-- .slide: data-transition="slide" -->
 ## Scope hoisting
 
-<div class="left-align-box">
+<div class="left-align-box section-appear" style="animation-delay:0.4s">
   `y.js`
-  <pre><code id="scope-hoisting-in-1" contenteditable class="lang-javascript hljs">export let y = 1;
+  <pre class="section-appear" style="animation-delay:0.6s"><code id="scope-hoisting-in-1" contenteditable class="lang-javascript hljs">export let y = 1;
 setTimeout(() => y = 2);</code></pre>
   `x.js`
-  <pre><code id="scope-hoisting-in-2" contenteditable class="lang-javascript hljs">import {y} from './y.js';
+  <pre class="section-appear" style="animation-delay:0.8s"><code id="scope-hoisting-in-2" contenteditable class="lang-javascript hljs">import {y} from './y.js';
 setTimeout(() =>
   console.log(y));</code></pre>
 </div>
-<div class="left-align-box" style="margin-left: 40px; min-width:300px;">
+<div class="left-align-box section-appear" style="margin-left: 40px; min-width:300px;animation-delay:1.0s">
   <button class="rollup-button" onclick="rollupToBlock({
       './y.js': 'scope-hoisting-in-1',
       './x.js': 'scope-hoisting-in-2'
@@ -264,13 +275,13 @@ setTimeout(() =>
     './x.js',
     'scope-hoisting-out')">
     <svg style="width:105px;height:60px">
-      <image x="0" y="0" height="60px" href="img/rollup.svg" class="rollup-button-image" />
+      <image x="0" y="0" height="60px" href="img/rollup.svg" class="rollup-button-image" style="animation-delay:1.2s"/>
       <path d="M70,10 v30 l-10,-2 l20,15 l20,-15 l-10,2 v-30"
-            pathLength="100" class="history-line rollup-button-line" style="animation-delay:0.6s;"/>
+            pathLength="100" class="history-line rollup-button-line" style="animation-delay:1.4s;"/>
     </svg>
   </button>
   `bundle.js`
-  <pre><code id="scope-hoisting-out" class="lang-javascript hljs"></code></pre>
+  <pre class="section-appear" style="animation-delay:1.6s"><code id="scope-hoisting-out" class="lang-javascript hljs"></code></pre>
 </div>
 
 --
@@ -280,11 +291,10 @@ shared variables across modules
 
 <svg class="down-arrow-svg">
   <path d="M15,5 v30 l-10,-2 l20,15 l20,-15 l-10,2 v-30"
-        pathLength="100" class="history-line svg-selfdraw" style="animation-delay:0.6s;"/>
+        pathLength="100" class="history-line svg-selfdraw" style="animation-delay:0.4s;"/>
 </svg>
 
-Better dead code elimination?
-
+<p class="section-appear" style="animation-delay:0.6s">Better dead code elimination?</p>
 
 ---
 
@@ -293,17 +303,18 @@ Better dead code elimination?
 
 --
 
-[medium.com/@Rich_Harris/tree-shaking-versus-dead-code-elimination-d3765df85c80](https://medium.com/@Rich_Harris/tree-shaking-versus-dead-code-elimination-d3765df85c80)
-
-<img src="img/tree-shaking-article.png" style="width:550px">
+<a href="https://medium.com/@Rich_Harris/tree-shaking-versus-dead-code-elimination-d3765df85c80">
+<p>medium.com/@Rich_Harris/<br>tree-shaking-versus-dead-code-elimination-d3765df85c80</p>
+<img src="img/tree-shaking-article.png" style="width:550px"></a>
 
 [en.wikipedia.org/wiki/Tree_shaking](https://en.wikipedia.org/wiki/Tree_shaking)
 
 --
 
+<!-- .slide: data-transition="slide" -->
 ## Traditional DCE
 
-<pre style="display:inline-block; margin-right:300px;"><code class="lang-javascript hljs" data-noescape><span class="fragment turn-red" data-fragment-index="1">import {getValue} from './y.js';</span><span class="fragment show-red-once" data-fragment-index="1">No included usages</span>
+<pre class="section-appear" style="display:inline-block; margin-right:300px;animation-delay:0.4s"><code class="lang-javascript hljs" data-noescape><span class="fragment turn-red" data-fragment-index="1">import {getValue} from './y.js';</span><span class="fragment show-red-once" data-fragment-index="1">No included usages</span>
 
 <span class="fragment turn-red" data-fragment-index="0">function unUsed() {}</span><span class="fragment show-red-once" data-fragment-index="0">No usages</span>
 
@@ -320,10 +331,11 @@ if (true) {
 
 --
 
+<!-- .slide: data-transition="slide" -->
 ## Tree-Shaking
 ("Mark-and-Sweep DCE")
 
-<pre style="display:inline-block; margin-right:300px;"><code class="lang-javascript hljs" data-noescape>import {getValue} from './getValue.js';
+<pre class="section-appear" style="display:inline-block; margin-right:300px;animation-delay:0.4s"><code class="lang-javascript hljs" data-noescape>import {getValue} from './getValue.js';
 
 function unUsed() {}
 
@@ -345,12 +357,14 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
 
 --
 
+<!-- .slide: data-transition="slide" -->
 ## The Rollup Process
 
 <div style="margin-top:40px">
-  <div class="selfdraw-container fragment">
-    <span class="highlight">Parse</span> code as AST,<br>
-    create scope hierarchy with declared variables,<br>
+  <div class="section-appear" style="animation-delay:0.4s">
+    <span class="highlight">1. Parse</span> code to AST,<br>
+    create scope hierarchy,<br>
+    collect declared variables,<br>
     bind identifiers to declarations;<br>
     repeat with discovered dependencies
   </div>
@@ -360,7 +374,7 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
       <path d="M15,5 v30 l-10,-2 l20,15 l20,-15 l-10,2 v-30"
             pathLength="100" class="history-line selfdraw"/>
     </svg>
-    <span class="highlight">Link</span> imports and exports across modules
+    <span class="highlight">2. Link</span> imports and exports across modules
   </div>
   
   <div class="selfdraw-container fragment">
@@ -368,7 +382,7 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
       <path d="M15,5 v30 l-10,-2 l20,15 l20,-15 l-10,2 v-30"
             pathLength="100" class="history-line selfdraw"/>
     </svg>
-    <span class="highlight">Mark</span> external exports,<br>
+    <span class="highlight">3. Mark</span> external exports,<br>
     mark statements to be included (multi-pass)
   </div>
   
@@ -377,7 +391,7 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
       <path d="M15,5 v30 l-10,-2 l20,15 l20,-15 l-10,2 v-30"
             pathLength="100" class="history-line selfdraw"/>
     </svg>
-    <span class="highlight">Render</span> concatenated transformed modules
+    <span class="highlight">4. Render</span> concatenated transformed modules
   </div>
 </div>
 
@@ -387,57 +401,57 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
 (ca. summer 2017)
 
 <ul>
-<li class="fragment">Based on custom AST extensions</li>
-<li class="fragment"><span class="highlight">`ASTNode.hasEffects()`</span></li>
-<li class="fragment">Only works on certain top-level statements</li>
-<li class="fragment"><span class="highlight">`CallExpression.hasEffects()`</span>: Several
-  <br>hundred buggy lines of custom logic duplicating
-  <br>other code</li>
+  <li class="section-appear" style="animation-delay:0.4s">Only removed certain top-level statements</li>
+  <li class="fragment" data-fragment-index="1">Based on custom AST extensions
+    <ul>
+      <li class="fragment appear" data-fragment-index="1" style="animation-delay:0.4s"><span class="highlight">`ASTNode.hasEffects()`</span></li>
+      <li class="fragment"><span class="highlight">`CallExpression.hasEffects()`</span>:
+        <br>Several hundred buggy lines of
+        <br>custom logic duplicating other code
+      </li>
+    </ul>
+  </li>
 </ul>
 
 --
 
+<!-- .slide: data-transition="slide" -->
 ## Applying the<br>Open-Closed-Principle
 
-<div style="text-align:left;display:inline-block">
-  <div class="fragment">
-    <p>
-    New effect types for expressions:
-    </p>
+<ul>
+  <li class="section-appear" style="animation-delay:0.4s">New effect types for expressions:
     <ul>
-      <li><span class="highlight">`.hasEffectsWhenCalled(callOptions)`</span></li>
-      <li><span class="highlight">`.hasEffectsWhenAccessed()`</span></li>
+      <li class="section-appear" style="animation-delay:0.6s"><span class="highlight">`.hasEffectsWhenCalled()`</span></li>
+      <li class="fragment" data-fragment-index="1"><span class="highlight">`.hasEffectsWhenAccessed()`</span></li>
     </ul>
-  </div>
-  <div class="fragment">
-    <p>
-    New effect type for expressions and patterns:
-    </p>
+  </li>
+  <li class="fragment" data-fragment-index="2">New effect type for expressions<br>and patterns:
     <ul>
-      <li><span class="highlight">`.hasEffectsWhenAssigned()`</span></li>
+      <li class="fragment appear" data-fragment-index="2" style="animation-delay:0.4s"><span class="highlight">`.hasEffectsWhenAssigned()`</span></li>
     </ul>
-  </div>
-</div>
+  </li>
+</ul>
 
 --
 
+<!-- .slide: data-transition="slide" -->
 ## Checking for side-effects
 
 <div style="text-align:left;display:inline-block">
-  <pre style="margin-right:300px;"><code class="lang-javascript hljs" data-noescape><span class="fragment turn-green" data-fragment-index="0">export let x;</span><span class="fragment show-green-once" data-fragment-index="0">Part of API</span><span class="fragment show-blue-once" data-fragment-index="6">hasEffectsWhenAssigned?</span><span class="fragment show-green-once" data-fragment-index="7">hasEffectsWhenAssigned: true</span><span class="fragment show-blue-once" data-fragment-index="10">hasEffectsWhenAssigned?</span><span class="fragment show-green-once" data-fragment-index="11">hasEffectsWhenAssigned: true</span>
-  let y;<span class="fragment show-red-once" data-fragment-index="1">hasEffects: false</span><span class="fragment show-red-once" data-fragment-index="8">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="12">hasEffectsWhenAssigned?</span><span class="fragment show-red-once" data-fragment-index="13">hasEffectsWhenAssigned: false</span><span class="fragment show-blue-once" data-fragment-index="15">hasEffectsWhenAssigned?</span><span class="fragment show-red-once" data-fragment-index="16">hasEffectsWhenAssigned: false</span>
-  
-  function doubleY() {<span class="fragment show-red-once" data-fragment-index="2">hasEffects: false</span><span class="fragment show-red-once" data-fragment-index="9">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="14">hasEffectsWhenCalled?</span>
-    y = 2 * y;<span class="fragment show-blue-once" data-fragment-index="15">hasEffects?</span>
-  }
-  
-  <span class="fragment turn-green" data-fragment-index="7">function assignValues() {</span><span class="fragment show-red-once" data-fragment-index="3">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="4">hasEffectsWhenCalled?</span>
-    <span class="fragment turn-green" data-fragment-index="11">x = 1;</span><span class="fragment show-blue-once" data-fragment-index="6">hasEffects?</span><span class="fragment show-blue-once" data-fragment-index="10">hasEffects?</span><span class="fragment show-green-once" data-fragment-index="11">hasEffects: true</span>
-    y = 1;<span class="fragment show-blue-once" data-fragment-index="12">hasEffects?</span><span class="fragment show-red-once" data-fragment-index="13">hasEffects: false</span>
-    doubleY();<span class="fragment show-blue-once" data-fragment-index="14">hasEffects?</span><span class="fragment show-red-once" data-fragment-index="16">hasEffects: false</span>
-  <span class="fragment turn-green" data-fragment-index="7">}</span>
-  
-  <span class="fragment turn-green" data-fragment-index="7">assignValues();</span><span class="fragment show-blue-once" data-fragment-index="4">hasEffects?</span><span class="fragment show-green-once" data-fragment-index="7">hasEffects: true</span>
+  <pre class="section-appear" style="margin-right:300px;animation-delay:0.4s"><code class="lang-javascript hljs" data-noescape><span class="fragment turn-green" data-fragment-index="0">export let x;</span><span class="fragment show-green-once" data-fragment-index="0">Part of API</span><span class="fragment show-blue-once" data-fragment-index="6">hasEffectsWhenAssigned?</span><span class="fragment show-green-once" data-fragment-index="7">hasEffectsWhenAssigned: true</span><span class="fragment show-blue-once" data-fragment-index="10">hasEffectsWhenAssigned?</span><span class="fragment show-green-once" data-fragment-index="11">hasEffectsWhenAssigned: true</span>
+let y;<span class="fragment show-red-once" data-fragment-index="1">hasEffects: false</span><span class="fragment show-red-once" data-fragment-index="8">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="12">hasEffectsWhenAssigned?</span><span class="fragment show-red-once" data-fragment-index="13">hasEffectsWhenAssigned: false</span><span class="fragment show-blue-once" data-fragment-index="15">hasEffectsWhenAssigned?</span><span class="fragment show-red-once" data-fragment-index="16">hasEffectsWhenAssigned: false</span>
+
+function doubleY() {<span class="fragment show-red-once" data-fragment-index="2">hasEffects: false</span><span class="fragment show-red-once" data-fragment-index="9">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="14">hasEffectsWhenCalled?</span>
+  y = 2 * y;<span class="fragment show-blue-once" data-fragment-index="15">hasEffects?</span>
+}
+
+<span class="fragment turn-green" data-fragment-index="7">function assignValues() {</span><span class="fragment show-red-once" data-fragment-index="3">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="4">hasEffectsWhenCalled?</span>
+  <span class="fragment turn-green" data-fragment-index="11">x = 1;</span><span class="fragment show-blue-once" data-fragment-index="6">hasEffects?</span><span class="fragment show-blue-once" data-fragment-index="10">hasEffects?</span><span class="fragment show-green-once" data-fragment-index="11">hasEffects: true</span>
+  y = 1;<span class="fragment show-blue-once" data-fragment-index="12">hasEffects?</span><span class="fragment show-red-once" data-fragment-index="13">hasEffects: false</span>
+  doubleY();<span class="fragment show-blue-once" data-fragment-index="14">hasEffects?</span><span class="fragment show-red-once" data-fragment-index="16">hasEffects: false</span>
+<span class="fragment turn-green" data-fragment-index="7">}</span>
+
+<span class="fragment turn-green" data-fragment-index="7">assignValues();</span><span class="fragment show-blue-once" data-fragment-index="4">hasEffects?</span><span class="fragment show-green-once" data-fragment-index="7">hasEffects: true</span>
 </code></pre>
   
   <div class="fragment" data-fragment-index="0"><span class="fragment" data-fragment-index="17" style="position:absolute;color:green">Done</span><span class="fragment fade-out" data-fragment-index="16">Pass <span class="fragment" data-fragment-index="8" style="position:absolute;">2</span><span class="fragment fade-out" data-fragment-index="7">1<span class="fragment" data-fragment-index="7">, second pass needed</span></span></span></div>
@@ -447,39 +461,39 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
 
 ## A foundation for<br>new features
 
-1. <span class="highlight">Value</span>-Tracking
-2. <span class="highlight">Object-Shape</span>-Tracking
-3. Function <span class="highlight">Return-Value</span>-Tracking
+<ol>
+  <li class="section-appear" style="animation-delay:0.4s"><span class="highlight">Value</span>-Tracking</li>
+  <li class="section-appear" style="animation-delay:0.6s"><span class="highlight">Object-Shape</span>-Tracking</li>
+  <li class="section-appear" style="animation-delay:0.8s">Function <span class="highlight">Return-Value</span>-Tracking</li>
+</ol>
 
 --
 
+<!-- .slide: data-transition="slide" -->
 ## 1. Value-Tracking
 
-<div style="text-align:left;display:inline-block">
-  <div class="fragment">
+<ul>
+  <li class="section-appear" style="animation-delay:0.4s">Separate <span class="highlight">Variable</span> objects from declarations
     <ul>
-      <li>Separate <span class="highlight">Variable</span> objects from declarations</li>
-      <li>Variables <span class="highlight">track</span> initial values and reassignments</li>
-      <li>A "value" is an <span class="highlight">AST node</span></li>
+      <li class="section-appear" style="animation-delay:0.6s">Variables <span class="highlight">track</span> initial values<br>and reassignments</li>
+      <li class="fragment" data-fragment-index="1">A variable "value" is an <span class="highlight">AST node</span></li>
     </ul>
-  </div>
-  <div class="fragment">
-    <p>
-    Due to performance considerations:
-    </p>
+  </li>
+  <li class="fragment" data-fragment-index="2">Due to performance considerations:
     <ul>
-      <li>Value of reassigned variables is<br><span class="highlight">UNKNOWN_NODE</span></li>
+      <li class="fragment appear" data-fragment-index="2" style="animation-delay:0.4s">Value of reassigned variables is<br><span class="highlight">UNKNOWN_NODE</span></li>
     </ul>
-  </div>
-</div>
+  </li>
+</ul>
 
 --
 
+<!-- .slide: data-transition="slide" -->
 ## Value-Tracking in action
 
-<div class="left-align-box" style="min-width:300px;">
+<div class="left-align-box section-appear" style="min-width:300px;animation-delay:0.4s">
   `main.js`
-  <pre><code id="value-tracking-in" contenteditable class="lang-javascript hljs">console.log('effect');
+  <pre class="section-appear" style="animation-delay:0.6s"><code id="value-tracking-in" contenteditable class="lang-javascript hljs">console.log('effect');
 
 let x = 0;
 const setX = globalVar
@@ -500,35 +514,37 @@ const aString = a
     './main.js',
     'value-tracking-out')">
     <svg style="width:105px;height:60px">
-      <image x="0" y="0" height="60px" href="img/rollup.svg" class="rollup-button-image" />
+      <image x="0" y="0" height="60px" href="img/rollup.svg" class="rollup-button-image" style="animation-delay:0.8s" />
       <path d="M70,10 v30 l-10,-2 l20,15 l20,-15 l-10,2 v-30"
-            pathLength="100" class="history-line rollup-button-line" style="animation-delay:0.6s;"/>
+            pathLength="100" class="history-line rollup-button-line" style="animation-delay:1.0s;"/>
     </svg>
   </button>
-  `bundle.js`
-  <pre><code id="value-tracking-out" class="lang-javascript hljs"></code></pre>
+  <span class="section-appear" style="animation-delay:1.2s">`bundle.js`</span>
+  <pre class="section-appear" style="animation-delay:1.4s"><code id="value-tracking-out" class="lang-javascript hljs"></code></pre>
 </div>
 
 --
 
+<!-- .slide: data-transition="slide" -->
 ## 2. Object shape tracking
 
 <div style="text-align:left;display:inline-block">
-  <p>
+  <p class="section-appear" style="animation-delay:0.4s">
   Make new effects shape-aware:
   </p>
   <ul>
-    <li>`hasEffectsWhenCalled`<span class="highlight section-appear" style="animation-delay:0.6s">`AtPath`</span></li>
-    <li>`hasEffectsWhenAccessed`<span class="highlight section-appear" style="animation-delay:0.8s">`AtPath`</span></li>
-    <li>`hasEffectsWhenAssigned`<span class="highlight section-appear" style="animation-delay:1.0s">`AtPath`</span></li>
+    <li class="section-appear" style="animation-delay:0.6s">`hasEffectsWhenCalled`<span class="highlight section-appear" style="animation-delay:1.0s">`AtPath`</span></li>
+    <li class="section-appear" style="animation-delay:0.8s">`hasEffectsWhenAccessed`<span class="highlight section-appear" style="animation-delay:1.2s">`AtPath`</span></li>
+    <li class="section-appear" style="animation-delay:1.0s">`hasEffectsWhenAssigned`<span class="highlight section-appear" style="animation-delay:1.4s">`AtPath`</span></li>
   </ul>
 </div>
 
 --
 
+<!-- .slide: data-transition="slide" -->
 ## Tracking member access
 
-<pre style="display:inline-block;margin-right:400px;"><code class="lang-javascript hljs" data-noescape>const <span class="fragment turn-blue-once" data-fragment-index="3">obj</span> = <span class="fragment turn-blue-once" data-fragment-index="4">{
+<pre class="section-appear" style="display:inline-block;margin-right:400px;animation-delay:0.4s"><code class="lang-javascript hljs" data-noescape>const <span class="fragment turn-blue-once" data-fragment-index="3">obj</span> = <span class="fragment turn-blue-once" data-fragment-index="4">{
   nested: <span class="fragment turn-blue-once" data-fragment-index="5">{
     x: <span class="fragment turn-blue-once" data-fragment-index="6"><span class="fragment turn-red-once" data-fragment-index="7">() => {}</span></span><span class="fragment show-blue-once" data-fragment-index="6">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-red-once" data-fragment-index="7">hasEffectsWhenCalledAtPath([]): false</span>
   }</span><span class="fragment show-blue-once" data-fragment-index="5">hasEffectsWhenCalledAtPath(["x"])?</span>
@@ -539,19 +555,21 @@ const aString = a
 
 --
 
+<!-- .slide: data-transition="slide" -->
 ## 3. Return value tracking
 
 <ul>
-  <li>Return statements register themselves<br>on the function scope</li>
-  <li>Allows tree-shaking curried functions</li>
-  <li>New method:<br><span class="highlight">`someReturnExpressionWhenCalledAtPath`</span></li>
+  <li class="section-appear" style="animation-delay:0.4s">Return statements register themselves<br>on the function scope</li>
+  <li class="fragment" data-fragment-index="1">Allows tree-shaking curried functions</li>
+  <li class="fragment" data-fragment-index="2">New method:<br><span class="highlight fragment appear" data-fragment-index="2" style="animation-delay:0.4s">`someReturnExpressionWhenCalledAtPath()`</span></li>
 </ul>
 
 --
 
+<!-- .slide: data-transition="slide" -->
 ## Tracking return values
 
-<pre style="display:inline-block;margin-right:400px;"><code class="lang-javascript hljs" data-noescape>function <span class="fragment turn-blue-once" data-fragment-index="2">getValue</span>(x) {
+<pre class="section-appear" style="display:inline-block;margin-right:400px;animation-delay:0.4s"><code class="lang-javascript hljs" data-noescape>function <span class="fragment turn-blue-once" data-fragment-index="2">getValue</span>(x) {
   if (x > 0) {
     return <span class="fragment turn-blue-once" data-fragment-index="3"><span class="fragment turn-red-once" data-fragment-index="4">() => 1</span></span>;<span class="fragment show-blue-once" data-fragment-index="3">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-red-once" data-fragment-index="4">hasEffectsWhenCalledAtPath([]): false</span>
   } else if (x === 0) {
@@ -565,13 +583,15 @@ const val = <span class="fragment turn-blue-once" data-fragment-index="0"><span 
 
 --
 
-## What is on the road map?
+## What's on the road map?
 
-- Extend known builtin globals
-- Value-tracking across destructuring
-- Object literal property tree-shaking
-- Value inlining
-- …
+<ul>
+  <li class="section-appear" style="animation-delay:0.4s">Extend known builtin globals</li>
+  <li class="fragment" data-fragment-index="1">Value-tracking across destructuring</li>
+  <li class="fragment" data-fragment-index="2">Object literal property tree-shaking</li>
+  <li class="fragment" data-fragment-index="3">Value inlining</li>
+  <li class="fragment appear" data-fragment-index="3" style="animation-delay:0.4s">…</li>
+</ul>
 
 ---
 
@@ -580,107 +600,149 @@ const val = <span class="fragment turn-blue-once" data-fragment-index="0"><span 
 
 --
 
-[medium.com/webpack/webpack-and-rollup-the-same-but-different-a41ad427058c](https://medium.com/webpack/webpack-and-rollup-the-same-but-different-a41ad427058c)
-
-<img src="img/rollup-for-libraries-article.png" style="width:550px">
+<a href="https://medium.com/webpack/webpack-and-rollup-the-same-but-different-a41ad427058c">
+<p>medium.com/webpack/<br>webpack-and-rollup-the-same-but-different-a41ad427058c</p>
+<img src="img/rollup-for-libraries-article.png" style="width:550px"></a>
 
 --
 
+<!-- .slide: data-transition="slide" -->
 ## Built for optimizing libraries
 
-- Many supported output formats:<br>
+- <!-- .element class="section-appear" style="animation-delay:0.4s" -->Many supported output formats:<br>
   <span class="highlight">IIFE</span>,  <span class="highlight">CJS</span>, <span class="highlight">AMD</span>, <span class="highlight">UMD</span>, <span class="highlight">ESM</span>, <span class="highlight">SystemJS</span>
-- Readable code:<br>
+- <!-- .element class="fragment" --><span class="highlight">Readable</span> output:<br>
   Preserves original formatting
-- Preserves annotations and other comments
-- No runtime loader overhead!
+- <!-- .element class="fragment" --><span class="highlight">Preserves</span> annotations and other comments
+- <!-- .element class="fragment" -->No runtime loader overhead!
 
 --
 
+<!-- .slide: data-transition="slide" -->
 ## Rich plugin ecosystem
 
-[github.com/rollup/rollup/wiki/Plugins](https://github.com/rollup/rollup/wiki/Plugins)
-
-- CJS, AMD module import
-- Babel, Uglify, Closure Compiler
-- TypeScript, Elm, ReasonML/OCaml,<br>WebAssembly
-- In memory bundling via plugin<br>(even in browsers!)
-- Import code from markdown documents
-- …
+<div class="section-appear" style="text-align:left;display:inline-block;animation-delay:0.4s">
+  <p><a href="https://github.com/rollup/rollup/wiki/Plugins">github.com/rollup/rollup/wiki/Plugins</a></p>
+  <ul>
+    <li class="section-appear" style="animation-delay:0.6s">CJS, AMD module import</li>
+    <li class="fragment" data-fragment-index="1">Babel, Uglify, Closure Compiler</li>
+    <li class="fragment" data-fragment-index="2">TypeScript, Elm, ReasonML/OCaml,<br>WebAssembly</li>
+    <li class="fragment" data-fragment-index="3">In memory bundling via plugin<br>(even in browsers!)</li>
+    <li class="fragment" data-fragment-index="4">Import code from markdown documents</li>
+    <li class="fragment appear" data-fragment-index="4" style="animation-delay:0.4s">…</li>
+  </ul>
+</div>
 
 --
 
 ## Trusted by some of the best
 
-React, Vue, D3, Moment, Three.js,<br>Ember, Angular, Babylon,<br>Jest, Bootstrap,<br>Leaflet, Prettier…
+<span class="section-appear" style="animation-delay:0.4s">React,</span>
+<span class="section-appear" style="animation-delay:0.6s">Vue,</span>
+<span class="section-appear" style="animation-delay:0.8s">Ember,</span>
+<span class="section-appear" style="animation-delay:1.0s">Angular,</span><br>
+<span class="section-appear" style="animation-delay:1.2s">D3,</span>
+<span class="section-appear" style="animation-delay:1.4s">Three.js,</span>
+<span class="section-appear" style="animation-delay:1.6s">Moment,</span><br>
+<span class="section-appear" style="animation-delay:1.8s">Jest,</span>
+<span class="section-appear" style="animation-delay:2.0s">Prettier,</span>
+<span class="section-appear" style="animation-delay:2.2s">Bootstrap,</span><br>
+<span class="section-appear" style="animation-delay:2.4s">Babylon,</span>
+<span class="section-appear" style="animation-delay:2.6s">Leaflet…</span>
 
 --
 
+<!-- .slide: data-transition="slide" -->
 ## What about web apps?
 
-- Plugins for CSS, LESS, SASS
-- Dev server plugin<br>(combines nicely with watch mode)
-- HTML template plugin
-
-But there is more…
+<div class="section-appear" style="text-align:left;display:inline-block;animation-delay:0.4s">
+<ul>
+  <li>Plugins for CSS, LESS, SASS</li>
+  <li class="fragment" data-fragment-index="1">Dev server plugin<br>(combines nicely with watch mode)</li>
+  <li class="fragment" data-fragment-index="2">HTML template plugin</li>
+</ul>
+<p class="fragment appear" data-fragment-index="2" style="animation-delay:0.4s">But there is more…</p>
+</div>
 
 --
 
-## Code-splitting (New!)
+<!-- .slide: data-transition="slide" -->
+## Code-Splitting <span class="highlight section-appear" style="animation-delay:0.4s">(new!)</span>
 
-- No code duplication
-- Still no runtime loader!<br>
-  (bring your own AMD/SystemJS loader, or<br>
-  use ES6 modules in modern browsers,<br>
-  CJS modules in Node)
-- Dynamic import support
-- Dependency-content-aware hashes<br>in file names
-- …
+<div class="section-appear" style="text-align:left;display:inline-block;animation-delay:0.6s">
+  <ul>
+    <li class="section-appear" style="animation-delay:0.8s">No code duplication</li>
+    <li class="fragment" data-fragment-index="1">Still no runtime loader!
+      <ul class="fragment appear" data-fragment-index="1" style="animation-delay:0.4s">
+        <li>bring your own AMD/SystemJS loader,<br>
+            or use ES6 modules in modern browsers,<br>
+            CJS modules in Node)
+        </li>
+      </ul>
+    <li class="fragment" data-fragment-index="2">Dynamic "`import(…)`" support</li>
+    <li class="fragment" data-fragment-index="3">Dependency-content-aware hashes<br>in file names</li>
+    <li class="fragment appear" data-fragment-index="3" style="animation-delay:0.4s">…</li>
+  </ul>
+</div>
 
 ---
 
 # VI
-## The current team
+## The core team
 
 --
 
+<!-- .slide: data-transition="slide" -->
 ## Rich-Harris
 
-![rich-harris](img/rich-harris.jpg) <!-- .element style="float:left; height: 300px" -->
+![rich-harris](img/rich-harris.jpg) <!-- .element class="section-appear" style="float:left; height: 300px; animation-delay:0.4s" -->
 
-- Created Rollup in 2015
-- Journalist and creator of<br>*countless* JS frameworks<br>(check out Svelte!)
+- <!-- .element class="section-appear" style="animation-delay:0.6s" -->Created Rollup in 2015
+- <!-- .element class="section-appear" style="animation-delay:0.8s" -->Journalist and creator of<br>*countless* JS frameworks<br>(check out Svelte!)
 
 --
 
+<!-- .slide: data-transition="slide" -->
 ## Guy Bedford
 
-![guy-bedford](img/guy-bedford.jpg) <!-- .element style="float:left; height: 300px" -->
+![guy-bedford](img/guy-bedford.jpg) <!-- .element class="section-appear" style="float:left; height: 300px; animation-delay:0.4s" -->
 
-- Created SystemJS and JSPM
-- Brought code-splitting to Rollup
-- Core team since Dec 2017
+- <!-- .element class="section-appear" style="animation-delay:0.6s" -->Created SystemJS and JSPM
+- <!-- .element class="section-appear" style="animation-delay:0.8s" -->Brought code-splitting to Rollup
+- <!-- .element class="section-appear" style="animation-delay:1.0s" -->Core team since Dec 2017
 
 --
 
+<!-- .slide: data-transition="slide" -->
 ## Lukas Taegert (i.e. myself)
 
-![lukas-taegert](img/lukas-taegert.jpg) <!-- .element style="float:left; height: 300px" -->
+![lukas-taegert](img/lukas-taegert.jpg) <!-- .element class="section-appear" style="float:left; height: 300px; animation-delay:0.4s" -->
 
-- Refactored tree-shaking<br>since Jul 2017
-- Core team since Sep 2017
-- Released all versions of Rollup<br>since Nov 2017
+- <!-- .element class="section-appear" style="animation-delay:0.6s" -->Refactored tree-shaking<br>since Jul 2017
+- <!-- .element class="section-appear" style="animation-delay:0.8s" -->Core team since Sep 2017
+- <!-- .element class="section-appear" style="animation-delay:1.0s" -->Released all versions of Rollup<br>since Nov 2017
 
 --
 
-## Countless other contributors!
+<!-- .slide: data-transition="slide" -->
+## And countless contributors!
 
-Some notable mentions:
-- Kelly Selden: Added module-preserving rendering
-  <br>to get tree-shaking for Ember.js
-- Sven Sauleau: Core web assembly support for
-  <br>Webpack and Rollup (in development)
+<div class="section-appear" style="text-align:left;display:inline-block;animation-delay:0.4s">
+  Recent notable contributions:<br>
+  <ul>
+    <li  class="section-appear" style="animation-delay:0.6s"><span class="highlight">Kelly Selden</span>: Module-preserving rendering
+      <br>to get tree-shaking for Ember.js
+    </li>
+    <li class="fragment"><span class="highlight">Sven Sauleau</span>: Core web assembly support for
+      <br>Webpack and Rollup (in development)
+    </li>
+  </ul>
+</div>
 
 --
 
 # Thank you!
+
+Supported by <!-- .element: class="section-appear" style="animation-delay:0.4s; margin-top:60px" -->
+
+<a href="https://www.tngtech.com/"><img src="img/tng.svg" class="section-appear" style="animation-delay:0.6s"></a>

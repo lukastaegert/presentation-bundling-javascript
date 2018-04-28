@@ -5,10 +5,6 @@ body .reveal .slides section .fragment.highlight {
   opacity: 1;
   visibility: visible;
 }
-body .reveal .slides section .fragment.highlight.current-fragment {
-  background-color: yellow;
-  border-radius: 4px;
-}
 
 .reveal .progress span {
   background-color: #690013;
