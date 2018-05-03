@@ -5,16 +5,31 @@ Lukas Taegert<br>
 TNG Technology Consulting, 2018-05-04
 <a href="https://www.tngtech.com/"><img src="img/tng.svg"></img></a>
 
+[[
+
+@audience:
+- Works with JS? Webpack? Rollup?
+- Own involvement
+- Maybe you should, why you should, what's special about R
+
 ---
 
 <a href="https://nolanlawson.com/2016/08/15/the-cost-of-small-modules">
 <p>nolanlawson.com/2016/08/15/the-cost-of-small-modules</p>
 <img src="img/small-modules-article.png" style="width:550px"></a>
 
+[[
+
+Nolan Lawson, Microsoft Edge team
+
 ---
 
 # I
 ## A Short History of<br>Bundling
+
+[[
+
+Part of the "JS Fatigue"
 
 --
 
@@ -177,30 +192,30 @@ Fewer requests <svg class="right-arrow-svg">
 <h3 class="section-appear" style="animation-delay:0.4s">Execution order</h3>
 <table class="section-appear" style="animation-delay:0.6s">
   <tr>
-    <th><span class="highlight">CJS</span>: dynamic</th>
-    <th class="section-appear" style="animation-delay:1.2s"><span class="highlight">ESM</span>: statically known</th>
+    <th><span class="highlight">CJS</span><span class="fragment" data-fragment-index="2">: dynamic</span></th>
+    <th class="section-appear" style="animation-delay:1.2s"><span class="highlight">ESM</span><span class="fragment" data-fragment-index="4">: statically known</span></th>
   </tr>
   <tr>
     <td class="section-appear" style="animation-delay:0.8s">
-    `x.js`
+    `main.js`
     <pre class="section-appear" style="animation-delay:1.0s"><code class="lang-javascript hljs">const x = 1;
-const y = require('./y.js');
+const y = require('./other.js');
 console.log(x, y);</code></pre></td>
     <td class="section-appear" style="animation-delay:1.4s">
-    `x.js`
+    `main.js`
     <pre class="section-appear" style="animation-delay:1.6s"><code class="lang-javascript hljs">const x = 1;
-import {y} from './y.js';
+import {y} from './other.js';
 console.log(x, y);</code></pre></td>
   </tr>
-  <tr class="fragment">
+  <tr class="fragment" data-fragment-index="1">
     <td><ol>
       <li>`const x = 1`</li>
-      <li class="fragment highlight-red">`<Execute y.js>`</li>
+      <li class="fragment highlight-red" data-fragment-index="2">`<Execute other.js>`</li>
       <li>`const y = ...`</li>
       <li>`console.log(x,y)`</li>
     </ol></td>
-    <td class="fragment"><ol>
-      <li class="fragment highlight-red">`<Execute y.js>`</li>
+    <td class="fragment" data-fragment-index="3"><ol>
+      <li class="fragment highlight-red" data-fragment-index="4">`<Execute other.js>`</li>
       <li>`<Import y>`</li>
       <li>`const x = 1`</li>
       <li>`console.log(x,y)`</li>
@@ -223,23 +238,23 @@ console.log(x, y);</code></pre></td>
   </tr>
   <tr>
     <td class="section-appear" style="animation-delay:0.8s">
-    `y.js`
-    <pre class="section-appear" style="animation-delay:1.0s"><code class="lang-javascript hljs">module.exports = 1;
+    `main.js`
+    <pre class="section-appear" style="animation-delay:1.0s"><code class="lang-javascript hljs">const y = require('./other.js');
 setTimeout(() =>
-  module.exports = 2);</code></pre>
-    `x.js`
-    <pre class="section-appear" style="animation-delay:1.2s"><code class="lang-javascript hljs">const y = require('./y.js');
+  console.log(y), 2000);</code></pre>
+    `other.js`
+    <pre class="section-appear" style="animation-delay:1.2s"><code class="lang-javascript hljs">module.exports = 1;
 setTimeout(() =>
-  console.log(y));</code></pre>
+  module.exports = 2, 1000);</code></pre>
     </td>
     <td class="section-appear" style="animation-delay:1.6s">
-    `y.js`
-    <pre class="section-appear" style="animation-delay:1.8s"><code class="lang-javascript hljs">export let y = 1;
-setTimeout(() => y = 2);</code></pre>
-    `x.js`
-    <pre class="section-appear" style="animation-delay:2.0s"><code class="lang-javascript hljs">import {y} from './y.js';
+    `main.js`
+    <pre class="section-appear" style="animation-delay:1.8s"><code class="lang-javascript hljs">import {y} from './other.js';
 setTimeout(() =>
-  console.log(y));</code></pre>
+  console.log(y), 2000);</code></pre>
+    `other.js`
+    <pre class="section-appear" style="animation-delay:2.0s"><code class="lang-javascript hljs">export let y = 1;
+setTimeout(() => y = 2, 1000);</code></pre>
     </td>
   </tr>
   <tr class="fragment">
@@ -259,20 +274,20 @@ setTimeout(() =>
 ## Scope hoisting
 
 <div class="left-align-box section-appear" style="animation-delay:0.4s">
-  `y.js`
-  <pre class="section-appear" style="animation-delay:0.6s"><code id="scope-hoisting-in-1" contenteditable class="lang-javascript hljs">export let y = 1;
-setTimeout(() => y = 2);</code></pre>
-  `x.js`
-  <pre class="section-appear" style="animation-delay:0.8s"><code id="scope-hoisting-in-2" contenteditable class="lang-javascript hljs">import {y} from './y.js';
+  `main.js`
+  <pre class="section-appear" style="animation-delay:0.6s"><code id="scope-hoisting-in-2" contenteditable class="lang-javascript hljs">import {y} from './other.js';
 setTimeout(() =>
-  console.log(y));</code></pre>
+  console.log(y), 2000);</code></pre>
+  `other.js`
+  <pre class="section-appear" style="animation-delay:0.8s"><code id="scope-hoisting-in-1" contenteditable class="lang-javascript hljs">export let y = 1;
+setTimeout(() => y = 2, 1000);</code></pre>
 </div>
 <div class="left-align-box section-appear" style="margin-left: 40px; min-width:300px;animation-delay:1.0s">
   <button class="rollup-button" onclick="rollupToBlock({
-      './y.js': 'scope-hoisting-in-1',
-      './x.js': 'scope-hoisting-in-2'
+      './other.js': 'scope-hoisting-in-1',
+      './main.js': 'scope-hoisting-in-2'
     },
-    './x.js',
+    './main.js',
     'scope-hoisting-out')">
     <svg style="width:105px;height:60px">
       <image x="0" y="0" height="60px" href="img/rollup.svg" class="rollup-button-image" style="animation-delay:1.2s"/>
@@ -286,7 +301,7 @@ setTimeout(() =>
 
 --
 
-No export objects,<br>
+No reassigned exports,<br>
 shared variables across modules
 
 <svg class="down-arrow-svg">
@@ -353,12 +368,12 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
 ---
 
 # IV
-## Rolling it up –<br>The Power of Clean Code
+## Rolling it up
 
 --
 
 <!-- .slide: data-transition="slide" -->
-## The Rollup Process
+## Let's bundle
 
 <div style="margin-top:40px">
   <div class="section-appear" style="animation-delay:0.4s">
@@ -398,25 +413,30 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
 --
 
 ## Marking included statements
-(ca. summer 2017)
 
-<ul>
-  <li class="section-appear" style="animation-delay:0.4s">Only removed certain top-level statements</li>
-  <li class="fragment" data-fragment-index="1">Based on custom AST extensions
-    <ul>
-      <li class="fragment appear" data-fragment-index="1" style="animation-delay:0.4s"><span class="highlight">`ASTNode.hasEffects()`</span></li>
-      <li class="fragment"><span class="highlight">`CallExpression.hasEffects()`</span>:
-        <br>Several hundred buggy lines of
-        <br>custom logic duplicating other code
-      </li>
-    </ul>
-  </li>
-</ul>
+<div style="text-align:left;display:inline-block">
+  <ul>
+    <li class="section-appear" style="animation-delay:0.4s">Based on custom AST extensions:
+      <ul>
+        <li class="section-appear" style="animation-delay:0.6s"><span class="highlight">`ASTNode.hasEffects()`</span></li>
+      </ul>
+    </li>
+    <li class="fragment" data-fragment-index="1">ca. summer 2017:
+      <ul>
+        <li class="fragment appear" data-fragment-index="1" style="animation-delay:0.4s">Only removed certain top-level statements</li>
+        <li class="fragment" data-fragment-index="2"><span class="highlight">`CallExpression.hasEffects()`</span>:
+          <br>Several hundred buggy lines of
+          <br>custom logic duplicating other code
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
 
 --
 
 <!-- .slide: data-transition="slide" -->
-## Applying the<br>Open-Closed-Principle
+## Welcoming the<br>Open-Closed-Principle
 
 <ul>
   <li class="section-appear" style="animation-delay:0.4s">New effect types for expressions:
@@ -587,10 +607,9 @@ const val = <span class="fragment turn-blue-once" data-fragment-index="0"><span 
 
 <ul>
   <li class="section-appear" style="animation-delay:0.4s">Extend known builtin globals</li>
-  <li class="fragment" data-fragment-index="1">Value-tracking across destructuring</li>
-  <li class="fragment" data-fragment-index="2">Object literal property tree-shaking</li>
-  <li class="fragment" data-fragment-index="3">Value inlining</li>
-  <li class="fragment appear" data-fragment-index="3" style="animation-delay:0.4s">…</li>
+  <li class="fragment" data-fragment-index="1">Object literal property tree-shaking</li>
+  <li class="fragment" data-fragment-index="2">Value inlining</li>
+  <li class="fragment appear" data-fragment-index="2" style="animation-delay:0.4s">…</li>
 </ul>
 
 ---
@@ -625,11 +644,11 @@ const val = <span class="fragment turn-blue-once" data-fragment-index="0"><span 
   <p><a href="https://github.com/rollup/rollup/wiki/Plugins">github.com/rollup/rollup/wiki/Plugins</a></p>
   <ul>
     <li class="section-appear" style="animation-delay:0.6s">CJS, AMD module import</li>
-    <li class="fragment" data-fragment-index="1">Babel, Uglify, Closure Compiler</li>
-    <li class="fragment" data-fragment-index="2">TypeScript, Elm, ReasonML/OCaml,<br>WebAssembly</li>
-    <li class="fragment" data-fragment-index="3">In memory bundling via plugin<br>(even in browsers!)</li>
-    <li class="fragment" data-fragment-index="4">Import code from markdown documents</li>
-    <li class="fragment appear" data-fragment-index="4" style="animation-delay:0.4s">…</li>
+    <li class="section-appear" style="animation-delay:0.8s">Babel, Uglify, Closure Compiler</li>
+    <li class="section-appear" style="animation-delay:1.0s">TypeScript, Elm, ReasonML/OCaml,<br>WebAssembly</li>
+    <li class="section-appear" style="animation-delay:1.2s">In memory bundling via plugin<br>(even in browsers!)</li>
+    <li class="section-appear" style="animation-delay:1.4s">Import code from markdown documents</li>
+    <li class="section-appear" style="animation-delay:1.6s">…</li>
   </ul>
 </div>
 
@@ -658,10 +677,10 @@ const val = <span class="fragment turn-blue-once" data-fragment-index="0"><span 
 <div class="section-appear" style="text-align:left;display:inline-block;animation-delay:0.4s">
 <ul>
   <li>Plugins for CSS, LESS, SASS</li>
-  <li class="fragment" data-fragment-index="1">Dev server plugin<br>(combines nicely with watch mode)</li>
-  <li class="fragment" data-fragment-index="2">HTML template plugin</li>
+  <li class="section-appear" style="animation-delay:0.6s">Dev server plugin<br>(combines nicely with watch mode)</li>
+  <li class="section-appear" style="animation-delay:0.8s">HTML template plugin</li>
 </ul>
-<p class="fragment appear" data-fragment-index="2" style="animation-delay:0.4s">But there is more…</p>
+<p class="section-appear" style="animation-delay:1.0s">But there is more…</p>
 </div>
 
 --
