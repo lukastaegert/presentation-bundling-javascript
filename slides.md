@@ -492,34 +492,9 @@ function doubleY() {<span class="fragment show-red-once" data-fragment-index="2"
 <!-- .slide: data-transition="slide" -->
 ## 1. Value-Tracking
 
-<ul>
-  <li class="section-appear" style="animation-delay:0.4s">Separate <span class="highlight">Variable</span> objects from declarations
-    <ul>
-      <li class="section-appear" style="animation-delay:0.6s">Variables <span class="highlight">track</span> initial values<br>and reassignments</li>
-      <li class="fragment" data-fragment-index="1">A variable "value" is an <span class="highlight">AST node</span></li>
-    </ul>
-  </li>
-  <li class="fragment" data-fragment-index="2">Due to performance considerations:
-    <ul>
-      <li class="fragment appear" data-fragment-index="2" style="animation-delay:0.4s">Value of reassigned variables is<br><span class="highlight">UNKNOWN_NODE</span></li>
-    </ul>
-  </li>
-</ul>
-
---
-
-<!-- .slide: data-transition="slide" -->
-## Value-Tracking in action
-
 <div class="left-align-box section-appear" style="min-width:300px;animation-delay:0.4s">
   `main.js`
   <pre class="section-appear" style="animation-delay:0.6s"><code id="value-tracking-in" contenteditable class="lang-javascript hljs">console.log('effect');
-
-let x = 0;
-const setX = globalVar
-   ? () => x = 1
-   : () => x = 2;
-setX();
 
 const a = [1, 2, 3];
 const aString = a
@@ -572,34 +547,6 @@ const aString = a
   
 <span class="fragment turn-blue-once" data-fragment-index="0"><span class="fragment turn-blue-once" data-fragment-index="1"><span class="fragment turn-blue-once" data-fragment-index="2"><span class="fragment turn-blue-once" data-fragment-index="3">obj</span>.nested</span>.x</span>()</span>;<span class="fragment show-blue-once" data-fragment-index="0">hasEffects?</span><span class="fragment show-red-once" data-fragment-index="7">hasEffects: false</span><span class="fragment show-blue-once" data-fragment-index="1">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-blue-once" data-fragment-index="2">hasEffectsWhenCalledAtPath(["x"])?</span><span class="fragment show-blue-once" data-fragment-index="3">hasEffectsWhenCalledAtPath(["nested", "x"])?</span>
 </code></pre>
-
---
-
-<!-- .slide: data-transition="slide" -->
-## 3. Return value tracking
-
-<ul>
-  <li class="section-appear" style="animation-delay:0.4s">Return statements register themselves<br>on the function scope</li>
-  <li class="fragment" data-fragment-index="1">Allows tree-shaking curried functions</li>
-  <li class="fragment" data-fragment-index="2">New method:<br><span class="highlight fragment appear" data-fragment-index="2" style="animation-delay:0.4s">`someReturnExpressionWhenCalledAtPath()`</span></li>
-</ul>
-
---
-
-<!-- .slide: data-transition="slide" -->
-## Tracking return values
-
-<pre class="section-appear" style="display:inline-block;margin-right:400px;animation-delay:0.4s"><code class="lang-javascript hljs" data-noescape>function <span class="fragment turn-blue-once" data-fragment-index="2">getValue</span>(x) {
-  if (x > 0) {
-    return <span class="fragment turn-blue-once" data-fragment-index="3"><span class="fragment turn-red-once" data-fragment-index="4">() => 1</span></span>;<span class="fragment show-blue-once" data-fragment-index="3">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-red-once" data-fragment-index="4">hasEffectsWhenCalledAtPath([]): false</span>
-  } else if (x === 0) {
-    return <span class="fragment turn-blue-once" data-fragment-index="3"><span class="fragment turn-red-once" data-fragment-index="4">() => 0</span></span>;<span class="fragment show-blue-once" data-fragment-index="3">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-red-once" data-fragment-index="4">hasEffectsWhenCalledAtPath([]): false</span>
-  }
-  <span class="fragment add-red" data-fragment-index="3">return <span class="fragment turn-blue-once" data-fragment-index="3"><span class="fragment turn-green-once" data-fragment-index="4">undefined</span></span>;</span><span class="fragment show-blue-once" data-fragment-index="3">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-green-once" data-fragment-index="4">hasEffectsWhenCalledAtPath([]): true</span>
-}
-const val = <span class="fragment turn-blue-once" data-fragment-index="0"><span class="fragment turn-blue-once" data-fragment-index="1"><span class="fragment turn-blue-once" data-fragment-index="2">getValue</span>(1)</span>()</span>;<span class="fragment show-blue-once" data-fragment-index="0">hasEffects?</span><span class="fragment show-blue-once" data-fragment-index="1">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-blue-once" data-fragment-index="2">someReturnExpressionWhenCalledAtPath([],<br>  hasEffectsWhenCalledAtPath([])?)?</span><span class="fragment show-green-once" data-fragment-index="4">hasEffects: true</span>
-</code></pre>
-</div>
 
 --
 
