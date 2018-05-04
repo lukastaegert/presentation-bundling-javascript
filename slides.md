@@ -1,5 +1,5 @@
-# Bundling JavaScript
-## The Good, the Dead and the Ugly Code
+# Bundling<br>JavaScript
+## <span style="animation-duration:1s;color:gray">The Good, the Dead and the Ugly Code</span>
 
 Lukas Taegert<br>
 TNG Technology Consulting, 2018-05-04
@@ -20,7 +20,8 @@ TNG Technology Consulting, 2018-05-04
 
 [[
 
-Nolan Lawson, Microsoft Edge team
+- Nolan Lawson, Microsoft Edge team
+- Rollup much better (except GCC), why is that?
 
 ---
 
@@ -99,6 +100,12 @@ Part of the "JS Fatigue"
   </g>
 </svg>
 
+
+[[
+
+Node.js:2009
+
+
 --
 
 ## Modules are bad for performance
@@ -108,17 +115,21 @@ Fewer requests <svg class="right-arrow-svg">
         pathLength="100" class="history-line svg-selfdraw" style="animation-delay:0.6s;"/>
 </svg> Faster loading
 <svg style="display:block; width:800px; height:400px; margin:20px auto">
-  <text x="300" y="80" text-anchor="end" class="section-appear" style="animation-delay:0.8s;">jquery.js</text>
-  <text x="300" y="140" text-anchor="end" class="section-appear" style="animation-delay:1.0s;">angular.js</text>
-  <text x="300" y="200" text-anchor="end" class="section-appear" style="animation-delay:1.2s;">lodash.js</text>
-  <text x="300" y="260" text-anchor="end" class="section-appear" style="animation-delay:1.4s;">app.js</text>
-  <text x="300" y="320" text-anchor="end" class="section-appear" style="animation-delay:1.6s;">…</text>
-  <g class="fragment none">
+  <text x="300" y="80" text-anchor="end" class="fragment appear" data-fragment-index="1" style="animation-delay:0s;">jquery.js</text>
+  <text x="300" y="140" text-anchor="end" class="fragment appear" data-fragment-index="1" style="animation-delay:0.2s;">angular.js</text>
+  <text x="300" y="200" text-anchor="end" class="fragment appear" data-fragment-index="1" style="animation-delay:0.4s;">lodash.js</text>
+  <text x="300" y="260" text-anchor="end" class="fragment appear" data-fragment-index="1" style="animation-delay:0.6s;">app.js</text>
+  <text x="300" y="320" text-anchor="end" class="fragment appear" data-fragment-index="1" style="animation-delay:0.8s;">…</text>
+  <g class="fragment none" data-fragment-index="1" style="animation-delay:2.6s;">
     <path d="M360,40 h20 V185 h30 l-2,-10 l15,20 l-15,20 l2,-10 h-30 V340 h-20"
-          pathLength="100" class="history-line group-selfdraw" />
-    <text x="480" y="200" class="group-appear" style="animation-delay:0.6s;">bundle.js</text>
+          pathLength="100" class="history-line group-selfdraw" style="animation-delay:0.6s" />
+    <text x="480" y="200" class="group-appear" style="animation-delay:1.0s;">bundle.js</text>
   </g>
 </svg>
+
+[[
+
+At least in browser
 
 --
 
@@ -273,7 +284,7 @@ setTimeout(() => y = 2, 1000);</code></pre>
 <!-- .slide: data-transition="slide" -->
 ## Scope hoisting
 
-<div class="left-align-box section-appear" style="animation-delay:0.4s">
+<div class="left-align-box section-appear" style="animation-delay:0.4s;">
   `main.js`
   <pre class="section-appear" style="animation-delay:0.6s"><code id="scope-hoisting-in-2" contenteditable class="lang-javascript hljs">import {y} from './other.js';
 setTimeout(() =>
@@ -324,6 +335,12 @@ shared variables across modules
 
 [en.wikipedia.org/wiki/Tree_shaking](https://en.wikipedia.org/wiki/Tree_shaking)
 
+
+[[
+
+Shakes the syntax tree, not the module graph
+
+
 --
 
 <!-- .slide: data-transition="slide" -->
@@ -365,10 +382,20 @@ if (true) <span class="fragment turn-green" data-fragment-index="1">{
   x = getValue();
 }<span class="fragment none" data-fragment-index="100"></span></code></pre></code></pre>
 
+
+[[
+
+That was the theory - how does Rollup do it?
+
+
 ---
 
 # IV
 ## Rolling it up
+
+[[
+
+Also how I got into this project
 
 --
 
@@ -539,7 +566,7 @@ const aString = a
 <!-- .slide: data-transition="slide" -->
 ## Tracking member access
 
-<pre class="section-appear" style="display:inline-block;margin-right:400px;animation-delay:0.4s"><code class="lang-javascript hljs" data-noescape>const <span class="fragment turn-blue-once" data-fragment-index="3">obj</span> = <span class="fragment turn-blue-once" data-fragment-index="4">{
+<pre class="section-appear" style="display:inline-block;margin-right:600px;animation-delay:0.4s"><code class="lang-javascript hljs" data-noescape>const <span class="fragment turn-blue-once" data-fragment-index="3">obj</span> = <span class="fragment turn-blue-once" data-fragment-index="4">{
   nested: <span class="fragment turn-blue-once" data-fragment-index="5">{
     x: <span class="fragment turn-blue-once" data-fragment-index="6"><span class="fragment turn-red-once" data-fragment-index="7">() => {}</span></span><span class="fragment show-blue-once" data-fragment-index="6">hasEffectsWhenCalledAtPath([])?</span><span class="fragment show-red-once" data-fragment-index="7">hasEffectsWhenCalledAtPath([]): false</span>
   }</span><span class="fragment show-blue-once" data-fragment-index="5">hasEffectsWhenCalledAtPath(["x"])?</span>
