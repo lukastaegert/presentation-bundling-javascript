@@ -661,28 +661,3 @@ curried()();
 <span class="fragment" data-fragment-index="1">and of course</span><br>
 
 <h2 class="fragment appear" data-fragment-index="1" style="animation-delay:0.4s">you!</h2>
-
---
-
-<!-- .slide: data-transition="slide" -->
-## And countless contributors!
-
-<div class="section-appear" style="text-align:left;display:inline-block;animation-delay:0.4s">
-  Recent notable contributions:<br>
-  <ul>
-    <li  class="section-appear" style="animation-delay:0.6s"><span class="highlight">Kelly Selden</span>: Module-preserving rendering
-      <br>to get tree-shaking for Ember.js
-    </li>
-    <li class="fragment"><span class="highlight">Sven Sauleau</span>: Core web assembly support for
-      <br>Webpack and Rollup (in development)
-    </li>
-  </ul>
-</div>
-
---
-
-# Thank you!
-
-Supported by <!-- .element: class="section-appear" style="animation-delay:0.4s; margin-top:60px" -->
-
-<a href="https://www.tngtech.com/"><img src="img/tng.svg" class="section-appear" style="animation-delay:0.6s"></a>
