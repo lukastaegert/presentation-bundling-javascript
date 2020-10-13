@@ -4,7 +4,7 @@
 	"version": "1.0.0",
 	"description": "Slides for the BTD rollup talk",
 	"dependencies": {
-		"serve": "^6.5.7"
+		"serve": "^10.1.2"
 	},
 	"scripts": {
 		"start": "serve"
